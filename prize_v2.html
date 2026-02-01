@@ -477,7 +477,7 @@
                         playVoiceForSlide(slide.id);
                     } else if (isAutoPlay) {
                         // Nếu không bật giọng nói nhưng bật Auto, tự chuyển sau 5 giây (đủ đọc text)
-                        autoPlayTimer = setTimeout(nextSlide, 5000);
+                        autoPlayTimer = setTimeout(nextSlide, 500);
                     }
                 } else if (index < currentSlide) {
                     slide.classList.add('exit');
@@ -503,7 +503,7 @@
             void flashOverlay.offsetWidth;
             flashOverlay.classList.add('flash-active');
             particleSpeedMultiplier = 8;
-            setTimeout(() => { particleSpeedMultiplier = 1; }, 2000);
+            setTimeout(() => { particleSpeedMultiplier = 1; }, 100);
         }
 
         function runCounters(slide) {
@@ -557,7 +557,7 @@
                 // Nếu đang có voice chạy, nó sẽ tự chuyển ở onended. 
                 // Nếu không, set timeout.
                 if (voiceAudio.paused && !voiceAudio.src.includes('null')) {
-                   autoPlayTimer = setTimeout(nextSlide, 2000);
+                   autoPlayTimer = setTimeout(nextSlide, 10);
                 }
             } else {
                 clearTimeout(autoPlayTimer);
@@ -600,7 +600,7 @@
             if (!fileName) {
                 // Nếu slide không có tiếng (VD: Drama), chờ 4s rồi chuyển nếu Auto Play bật
                 if (isAutoPlay) {
-                    autoPlayTimer = setTimeout(nextSlide, 4000);
+                    autoPlayTimer = setTimeout(nextSlide, 500);
                 }
                 return; 
             }
@@ -615,7 +615,7 @@
                 
                 // LOGIC AUTO PLAY: Hết file âm thanh -> Chờ 2s -> Next Slide
                 if (isAutoPlay) {
-                    autoPlayTimer = setTimeout(nextSlide, 2000);
+                    autoPlayTimer = setTimeout(nextSlide, 500);
                 }
             };
             voiceAudio.onerror = () => {
@@ -623,7 +623,7 @@
                 if (bgMusic) bgMusic.volume = 1.0;
                 // Nếu lỗi file, vẫn auto next sau 4s
                 if (isAutoPlay) {
-                    autoPlayTimer = setTimeout(nextSlide, 4000);
+                    autoPlayTimer = setTimeout(nextSlide, 500);
                 }
             };
 
