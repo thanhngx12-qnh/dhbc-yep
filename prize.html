@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHU ANH LOGISTICS - YEP 2026</title>
+    <title>Công ty TNHH Thương mại Vận tải Phú Anh | Tà Lùng Logistics</title>
     <style>
         /* --- RESET & BASE --- */
         :root {
@@ -56,7 +56,7 @@
             animation: shine 4s linear infinite;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 900; /* Đậm hơn nữa */
+            font-weight: 900;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
@@ -70,7 +70,7 @@
         p { font-size: clamp(1.5rem, 2vw, 2.5rem); line-height: 1.5; color: #333; max-width: 90%; margin: 0 auto; font-weight: 600; }
         
         .subtext {
-            font-size: clamp(1.5rem, 2.5vw, 3rem); /* Subtext to hẳn lên */
+            font-size: clamp(1.5rem, 2.5vw, 3rem);
             color: var(--text-sub);
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -81,22 +81,43 @@
             padding-bottom: 10px;
         }
 
-        /* --- LOGO PLACEHOLDER --- */
+        /* --- LOGO IMAGE STYLES --- */
         .logo-box {
-            width: 180px; height: 180px; /* Logo to hơn */
-            background: var(--text-main);
-            color: #fff;
+            width: 180px; height: 180px;
+            background: #fff;
             border-radius: var(--border-radius-sharp);
-            display: flex; justify-content: center; align-items: center;
-            font-size: 5rem; font-weight: 900;
+            display: block; 
             margin: 0 auto 40px auto;
             box-shadow: 15px 15px 0px var(--gold-primary);
             border: 3px solid var(--text-main);
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        /* --- PERSISTENT BRANDING (CORNER) --- */
+        #persistent-branding {
+            position: fixed; top: 30px; left: 30px; z-index: 40;
+            display: flex; align-items: center; gap: 15px;
+            opacity: 0; transition: opacity 0.8s; pointer-events: none;
+        }
+        #persistent-branding.show { opacity: 1; }
+        
+        .brand-logo-small {
+            width: 60px; height: 60px; background: #fff; 
+            display: block;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+            object-fit: contain;
+            padding: 5px;
+        }
+        .brand-name-small {
+            color: var(--text-main); font-weight: 800; font-size: 1.2rem; text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8); letter-spacing: 1px;
         }
 
         /* --- LUCKY DRAW COMPONENTS --- */
         .huge-number { 
-            font-size: clamp(8rem, 20vw, 25rem); /* Số đếm cực lớn */
+            font-size: clamp(8rem, 20vw, 25rem);
             font-weight: 900; line-height: 0.9; display: block; margin: 20px 0; 
             color: var(--gold-primary);
             text-shadow: 8px 8px 0px rgba(0,0,0,0.1);
@@ -107,7 +128,7 @@
             color: #fff;
             background: var(--text-main);
             font-weight: 900;
-            font-size: clamp(3rem, 6vw, 7rem); /* Giá tiền to rõ */
+            font-size: clamp(3rem, 6vw, 7rem);
             padding: 20px 60px; 
             border-radius: var(--border-radius-sharp);
             box-shadow: 15px 15px 0px var(--gold-primary);
@@ -120,7 +141,7 @@
         /* --- PRIZE IMAGES --- */
         .prize-img-container {
             width: 100%;
-            max-width: 650px; /* Khung ảnh to hơn */
+            max-width: 650px;
             height: 400px;
             margin: 30px auto;
             position: relative;
@@ -146,8 +167,7 @@
         }
 
         .slide {
-            position: absolute; width: 95%; /* Mở rộng chiều ngang slide */
-            max-width: 1800px;
+            position: absolute; width: 95%; max-width: 1800px;
             text-align: center; opacity: 0;
             transform: scale(0.95) translateY(30px);
             transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
@@ -164,7 +184,6 @@
         .d-1 { transition-delay: 0.1s; } .d-2 { transition-delay: 0.2s; } .d-3 { transition-delay: 0.3s; }
         .d-4 { transition-delay: 0.4s; } .d-5 { transition-delay: 0.5s; }
 
-        /* Specifics */
         #slide-10 { z-index: 20; }
         
         .flash-overlay {
@@ -176,19 +195,42 @@
 
         /* --- UI CONTROLS --- */
         #controls-ui { 
-            position: fixed; bottom: 20px; right: 20px; z-index: 50; display: flex; gap: 10px; 
-            opacity: 0.6; transition: opacity 0.3s; 
+            position: fixed; bottom: 20px; right: 20px; z-index: 50; display: flex; align-items: center; gap: 10px; 
+            opacity: 0.9; transition: opacity 0.3s; background: rgba(255,255,255,0.8);
+            padding: 10px 15px; border-radius: 5px; border: 1px solid var(--text-main);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         #controls-ui:hover { opacity: 1; }
         .btn {
-            background: #fff; border: 3px solid var(--text-main);
-            color: var(--text-main); padding: 15px 30px; cursor: pointer; 
+            background: #fff; border: 2px solid var(--text-main);
+            color: var(--text-main); padding: 8px 15px; cursor: pointer; 
             border-radius: 0px; 
-            font-size: 16px; text-transform: uppercase; font-weight: 800;
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            font-size: 13px; text-transform: uppercase; font-weight: 800;
             transition: all 0.2s;
+            white-space: nowrap;
         }
-        .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--gold-primary); }
+        .btn:hover { background: var(--text-main); color: #fff; }
+        
+        .btn-active {
+            background: var(--text-main);
+            color: #fff;
+        }
+        
+        .btn-autoplay-on {
+            border-color: #2ecc71; color: #2ecc71;
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); } 100% { box-shadow: 0 0 0 5px rgba(46, 204, 113, 0); } }
+
+        /* VOLUME CONTROL STYLE */
+        .vol-wrapper {
+            display: flex; align-items: center; gap: 5px;
+            border-left: 1px solid #ccc; border-right: 1px solid #ccc;
+            padding: 0 10px;
+        }
+        input[type=range] {
+            width: 80px; accent-color: var(--gold-primary); cursor: pointer;
+        }
 
         #progress-bar {
             position: fixed; bottom: 0; left: 0; height: 10px;
@@ -208,8 +250,8 @@
 </head>
 <body>
 
-    <input type="file" id="music-input" accept="audio/*" style="display: none;">
-    <audio id="bg-music" loop></audio>
+    <!-- FILE NHẠC NỀN CỐ ĐỊNH -->
+    <audio id="bg-music" loop src="voices/sound-background.mp3"></audio>
     
     <div id="loader"><div class="spinner"></div></div>
     <div id="flash-overlay" class="flash-overlay"></div>
@@ -217,11 +259,17 @@
     <div class="vignette"></div>
     <div id="progress-bar"></div>
 
+    <!-- PERSISTENT BRANDING -->
+    <div id="persistent-branding">
+        <img src="Logo.png" class="brand-logo-small" alt="Logo">
+        <div class="brand-name-small">Công ty TNHH Thương mại Vận tải Phú Anh | Tà Lùng Logistics</div>
+    </div>
+
     <div id="stage">
         
         <!-- Slide 1: Brand Opening -->
         <div class="slide active" id="slide-1">
-            <div class="logo-box anim-line d-1">PA</div>
+            <img src="Logo.png" class="logo-box anim-line d-1" alt="Logo Lớn">
             <p class="subtext anim-line d-2">YEAR END PARTY 2025</p>
             <h2 class="anim-line d-3" style="font-size: 2.5rem; letter-spacing: 1px; color: var(--text-main);">CÔNG TY TNHH THƯƠNG MẠI VẬN TẢI PHÚ ANH</h2>
             <h1 class="gold-text anim-line d-4" style="font-size: 6rem; margin-top: 15px;">TÀ LÙNG LOGISTICS</h1>
@@ -232,7 +280,7 @@
         <div class="slide" id="slide-2">
             <h2 class="anim-line d-1" style="font-size: 3rem; color: var(--text-sub);">CHÀO ĐÓN NĂM MỚI 2026</h2>
             <br><br>
-            <h1 class="gold-text anim-line d-3" style="font-size: 8rem;">GIẢI THƯỞNG BỐC THĂM MAY MẮN</h1>
+            <h1 class="gold-text anim-line d-3" style="font-size: 8rem;">BỐC THĂM MAY MẮN</h1>
             <p class="anim-line d-4" style="font-size: 2rem; margin-top: 30px; color: var(--text-main);">"MAY MẮN ĐANG CHỜ ĐÓN BẠN"</p>
         </div>
 
@@ -246,7 +294,7 @@
             <div class="anim-line d-3">
                 <p class="subtext">TỔNG GIÁ TRỊ GIẢI THƯỞNG</p>
                 <br>
-                <span class="prize-value count-up-money" data-target="15175000">0</span>
+                <span class="prize-value count-up-money" data-target="18000000">0</span>
                 <span style="font-size: 3.5rem; color: var(--text-main); font-weight: 900; margin-left: 20px;">VNĐ</span>
             </div>
         </div>
@@ -255,12 +303,9 @@
         <div class="slide" id="slide-4">
             <p class="subtext anim-line d-1">GIẢI KHUYẾN KHÍCH (1/2)</p>
             <h1 class="anim-line d-2" style="color: var(--text-main);">BIA HẠ LONG SAPPHIRE</h1>
-            
-            <!-- IMAGE PLACEHOLDER -->
             <div class="prize-img-container anim-line d-3">
-                <img src="https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Bia Hạ Long">
+                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m0zznua3s7tr3b" class="prize-img" alt="Bia Hạ Long">
             </div>
-
             <h2 class="anim-line d-4" style="font-size: 3.5rem; color: var(--gold-primary);">5 GIẢI</h2>
             <p class="anim-line d-5" style="font-size: 2rem;">(Mỗi giải 1 thùng)</p>
         </div>
@@ -269,12 +314,9 @@
         <div class="slide" id="slide-5">
             <p class="subtext anim-line d-1">GIẢI KHUYẾN KHÍCH (2/2)</p>
             <h1 class="anim-line d-2" style="color: var(--text-main);">COCA COLA</h1>
-
-            <!-- IMAGE PLACEHOLDER -->
             <div class="prize-img-container anim-line d-3">
-                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Coca Cola">
+                <img src="https://catalog-assets-asia-southeast1.aeon-vn-prod.e.spresso.com/c3RvcmFnZS5nb29nbGVhcGlzLmNvbQ==/YWVvbnZpZXRuYW0tc3ByZXNzby1wdWJsaWM=/Rk9PRExJTkUgMjAyNQ==/REVD/RklYIENPQ0EgMjAyNg==/MDYzNTQ0NjY=.jpg" class="prize-img" alt="Coca Cola">
             </div>
-
             <h2 class="anim-line d-4" style="font-size: 3.5rem; color: var(--gold-primary);">5 GIẢI</h2>
             <p class="anim-line d-5" style="font-size: 2rem;">(Mỗi giải 1 thùng)</p>
         </div>
@@ -283,44 +325,35 @@
         <div class="slide" id="slide-6">
             <p class="subtext anim-line d-1">3 GIẢI BA</p>
             <h1 class="gold-text anim-line d-2" style="font-size: 6rem;">BẾP TỪ ĐƠN PRAMIE</h1>
-            
-            <!-- IMAGE PLACEHOLDER -->
             <div class="prize-img-container anim-line d-3">
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Bếp từ">
+                <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/132/727/products/01-copy-fcb28b9e-d2f1-4ddf-830b-f3e0021ded88.jpg?v=1767067145257" class="prize-img" alt="Bếp từ">
             </div>
-
             <p class="anim-line d-4" style="color: var(--text-main); font-weight: 700; font-size: 2rem;">(Nhập khẩu Malaysia - Siêu bền)</p>
-            <span class="prize-value anim-line d-4">1.250.000 VNĐ</span>
+            <span class="prize-value anim-line d-4">1.500.000 VNĐ</span>
         </div>
 
         <!-- Slide 7: Giai 2 -->
         <div class="slide" id="slide-7">
             <p class="subtext anim-line d-1">2 GIẢI NHÌ</p>
             <h1 class="gold-text anim-line d-2" style="font-size: 6.5rem;">BỘ 3 NỒI ELMICH INOX</h1>
-            
-            <!-- IMAGE PLACEHOLDER -->
             <div class="prize-img-container anim-line d-3">
-                <img src="https://images.unsplash.com/photo-1584990347449-a0846b1e2991?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Bộ nồi">
+                <img src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2023_8_30_638289859218214882_bo-3-noi-inox-304-3-day-elmich-max-a-el-3851-1.jpg" class="prize-img" alt="Bộ nồi">
             </div>
-
-            <p class="anim-line d-4" style="color: var(--text-main); font-weight: 700; font-size: 2rem;">(Inox 304 cao cấp)</p>
-            <span class="prize-value anim-line d-4">1.300.000 VNĐ</span>
+            <!-- <p class="anim-line d-4" style="color: var(--text-main); font-weight: 700; font-size: 2rem;">(Inox 304 cao cấp)</p> -->
+            <span class="prize-value anim-line d-4">2.200.000 VNĐ</span>
         </div>
 
         <!-- Slide 8: Giai 1 -->
         <div class="slide" id="slide-8">
             <p class="subtext anim-line d-1">1 GIẢI NHẤT</p>
             <h1 class="gold-text anim-line d-2" style="font-size: 6rem;">NỒI CHIÊN KHÔNG DẦU TOSHIBA</h1>
-            
-            <!-- IMAGE PLACEHOLDER -->
             <div class="prize-img-container anim-line d-3">
-                <img src="https://images.unsplash.com/photo-1585834887309-847253503348?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Nồi chiên">
+                <img src="https://cdn.tgdd.vn/Products/Images/9418/306722/toshiba-af-74cs2srvn-b-74-lit-1-700x467.jpg" class="prize-img" alt="Nồi chiên">
             </div>
-
             <div class="anim-line d-3" style="margin-top: 15px;">
-                <p style="font-size: 2rem; color: var(--text-main); font-weight: 700;">(Dung tích 6.89L - Công nghệ AI)</p>
+                <!-- <p style="font-size: 2rem; color: var(--text-main); font-weight: 700;">(Dung tích 6.8L - Công nghệ AI)</p> -->
             </div>
-            <span class="prize-value anim-line d-4" style="font-size: 4rem;">2.400.000 VNĐ</span>
+            <span class="prize-value anim-line d-4" style="font-size: 2.700.000 VNĐ">2.700.000 VNĐ</span>
         </div>
 
         <!-- Slide 9: Drama -->
@@ -331,55 +364,71 @@
         <!-- Slide 10: Special Prize -->
         <div class="slide" id="slide-10">
             <p class="subtext anim-line d-1" style="color: var(--gold-primary);">GIẢI ĐẶC BIỆT</p>
-            <h1 class="gold-text anim-line d-2" style="font-size: 8rem; margin: 15px 0;">BỘ CHĂN GA CAO CẤP</h1>
-            
-            <!-- IMAGE PLACEHOLDER -->
+            <h1 class="gold-text anim-line d-2" style="font-size: 8rem; margin: 15px 0;">BỘ CHĂN GA CAO CẤP EVERON MOSTERA</h1>
             <div class="prize-img-container anim-line d-3" style="height: 450px;">
-                <img src="https://images.unsplash.com/photo-1522771753035-4850d32d5d78?auto=format&fit=crop&w=800&q=80" class="prize-img" alt="Bộ Chăn Ga">
+                <img src="https://i.ytimg.com/vi/YF6HPJIqiBk/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AG-B4AC0AWKAgwIABABGFAgXShlMA8=&rs=AOn4CLBrC6zpadWOsuq7PC9SJV-X6xDHgg" class="prize-img" alt="Bộ Chăn Ga">
             </div>
-
             <span class="prize-value anim-line d-4" style="font-size: 6rem; background: var(--text-main); border: 4px solid var(--gold-primary); box-shadow: 20px 20px 0px var(--gold-primary);">4.500.000 VNĐ</span>
         </div>
 
-        <!-- Slide 11: Ending -->
+        <!-- Slide 11: Backdrop Bốc Thăm -->
         <div class="slide" id="slide-11">
-            <h1 class="gold-text anim-line d-1" style="font-size: 5rem;">CHÚC MỪNG NĂM MỚI 2026!</h1>
+            <p class="subtext anim-line d-1">LUCKY DRAW TIME</p>
+            <h1 class="gold-text anim-line d-2" style="font-size: 6rem;">BỐC THĂM MAY MẮN</h1>
             
-            <div class="anim-line d-3" style="display: flex; gap: 50px; margin-top: 60px; justify-content: center;">
-                <div style="background: #fff; padding: 40px; border: 3px solid #ddd; box-shadow: 15px 15px 0px #eee;">
-                    <h3 style="color: var(--gold-primary); font-weight: 800; font-size: 2rem;">VĂN PHÒNG HẠ LONG</h3>
-                    <p style="font-size: 1.4rem; margin-top: 10px; color: var(--text-main);">Số 29 Lê Duẩn, Bãi Cháy, Quảng Ninh</p>
-                </div>
-                <div style="background: #fff; padding: 40px; border: 3px solid #ddd; box-shadow: 15px 15px 0px #eee;">
-                    <h3 style="color: var(--gold-primary); font-weight: 800; font-size: 2rem;">VĂN PHÒNG CAO BẰNG</h3>
-                    <p style="font-size: 1.4rem; margin-top: 10px; color: var(--text-main);">Cửa khẩu quốc tế Tà Lùng, Phục Hoà</p>
-                </div>
+            <div class="anim-line d-3" style="margin-top: 50px;">
+                <h2 style="color: var(--text-main); font-size: 3rem; font-weight: 800;">KÍNH MỜI BAN LÃNH ĐẠO</h2>
+                <h3 style="color: var(--text-sub); font-size: 2.5rem; margin-top: 20px;">LÊN SÂN KHẤU BỐC THĂM</h3>
             </div>
-            <div class="anim-line d-4" style="margin-top: 60px; padding: 20px 50px; background: var(--text-main); color: #fff; display: inline-block; box-shadow: 10px 10px 0px var(--gold-primary);">
-                <p style="font-size: 2rem; font-weight: 800; color: #fff;">HOTLINE: 0963.320.335</p>
+            
+            <!-- Logo Backdrop (Thay link ảnh vào src) -->
+            <div style="margin-top: 60px; opacity: 0.8;" class="anim-line d-4">
+                <img src="Logo.png" style="height: 120px; object-fit: contain;" alt="Logo Backdrop">
             </div>
         </div>
 
     </div>
 
-    <!-- CONTROLS -->
+    <!-- CONTROLS UI -->
     <div id="controls-ui">
-        <button class="btn" onclick="document.getElementById('music-input').click()">🎵 Nhạc</button>
-        <button class="btn" id="btn-toggle-music" onclick="toggleMusic()">🔇 Bật/Tắt</button>
+        <!-- Nút Bắt Đầu (Chơi file luckydraw.mp3) -->
+        <button class="btn" id="btn-start-lucky" onclick="toggleLuckySound()">🎁 Bắt đầu bốc thăm</button>
+        
+        <button class="btn" id="btn-auto-play" onclick="toggleAutoPlay()">⏯️ Auto: OFF</button>
+        <button class="btn" id="btn-toggle-voice" onclick="toggleVoice()">🔇 Giọng MC (Tắt)</button>
+        
+        <!-- Điều khiển nhạc nền & Volume -->
+        <button class="btn" id="btn-toggle-music" onclick="toggleMusic()">🔇 Nhạc Nền (Tắt)</button>
+        <div class="vol-wrapper">
+            <span>🔊</span>
+            <input type="range" id="vol-control" min="0" max="1" step="0.05" value="0.5" oninput="changeVolume(this.value)">
+        </div>
+
         <button class="btn" onclick="toggleFullScreen()">⛶ Fullscreen</button>
     </div>
 
     <script>
+        /* CONFIG */
         const slides = document.querySelectorAll('.slide');
         const progressBar = document.getElementById('progress-bar');
         const flashOverlay = document.getElementById('flash-overlay');
         const bgMusic = document.getElementById('bg-music');
-        const musicInput = document.getElementById('music-input');
         const btnToggleMusic = document.getElementById('btn-toggle-music');
+        const btnToggleVoice = document.getElementById('btn-toggle-voice');
+        const btnAutoPlay = document.getElementById('btn-auto-play');
+        const persistentBranding = document.getElementById('persistent-branding');
+        const volControl = document.getElementById('vol-control');
         
         let currentSlide = 0;
         let totalSlides = slides.length;
         let isMusicPlaying = false;
+        let isVoiceEnabled = true; 
+        let isAutoPlay = false;
+        let autoPlayTimer = null;
+        let userVolume = 0.5; // Mức âm lượng người dùng chọn
+        
+        let voiceAudio = new Audio();
+        let luckySound = new Audio('voices/luckydraw.mp3'); // File âm thanh Bắt đầu
 
         /* INIT */
         window.onload = () => {
@@ -389,22 +438,47 @@
                     document.getElementById('loader').style.display = 'none';
                     initParticles();
                     updateSlide();
+                    updateVoiceBtnState();
+                    // Set volume ban đầu
+                    bgMusic.volume = userVolume;
                 }, 800);
             }, 500);
         };
 
         /* NAVIGATION */
-        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlide(); } }
-        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlide(); } }
+        function nextSlide() { 
+            if (currentSlide < totalSlides - 1) { 
+                currentSlide++; 
+                updateSlide(); 
+            } else if (isAutoPlay) {
+                isAutoPlay = false;
+                updateAutoPlayBtnState();
+            }
+        }
+        function prevSlide() { 
+            if (currentSlide > 0) { 
+                currentSlide--; 
+                updateSlide(); 
+            } 
+        }
 
         function updateSlide() {
+            clearTimeout(autoPlayTimer);
+            if (currentSlide > 0) persistentBranding.classList.add('show');
+            else persistentBranding.classList.remove('show');
+
             slides.forEach((slide, index) => {
                 slide.classList.remove('active', 'exit');
                 if (index === currentSlide) {
                     slide.classList.add('active');
-                    // Logic kích hoạt hiệu ứng dựa trên ID mới
                     if (slide.id === 'slide-3') runCounters(slide);
                     if (slide.id === 'slide-10') triggerFlash(); 
+                    
+                    if (isVoiceEnabled) {
+                        playVoiceForSlide(slide.id);
+                    } else if (isAutoPlay) {
+                        autoPlayTimer = setTimeout(nextSlide, 5000);
+                    }
                 } else if (index < currentSlide) {
                     slide.classList.add('exit');
                 }
@@ -414,7 +488,10 @@
         }
 
         document.addEventListener('keydown', (e) => {
-            if(['Space','ArrowRight','Enter'].includes(e.code)) nextSlide();
+            if(['Space','ArrowRight','Enter'].includes(e.code)) {
+                clearTimeout(autoPlayTimer);
+                nextSlide();
+            }
             if(e.code === 'ArrowLeft') prevSlide();
             if(e.code === 'KeyF') toggleFullScreen();
         });
@@ -443,6 +520,7 @@
             };
             requestAnimationFrame(step);
         }
+
         function animateMoney(obj, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -455,24 +533,152 @@
             requestAnimationFrame(step);
         }
 
-        /* MUSIC & UI */
-        musicInput.addEventListener('change', function() {
-            if (this.files[0]) {
-                bgMusic.src = URL.createObjectURL(this.files[0]);
-                bgMusic.play(); isMusicPlaying = true; btnToggleMusic.innerText = "🔊 Playing";
+        /* SOUND & VOICE LOGIC */
+        
+        // 1. Chức năng nút Bắt Đầu (Toggle)
+        function toggleLuckySound() {
+            const btn = document.getElementById('btn-start-lucky');
+            
+            if (luckySound.paused) {
+                luckySound.currentTime = 0;
+                luckySound.play().then(() => {
+                    btn.innerHTML = "⏹️ Dừng Lucky";
+                    btn.classList.add('btn-active');
+                    
+                    // // Tự động bật nhạc nền nếu chưa bật
+                    // if (bgMusic.paused) {
+                    //     toggleMusic();
+                    // }
+                }).catch(e => console.log("Cần tương tác để phát âm thanh"));
+            } else {
+                luckySound.pause();
+                luckySound.currentTime = 0;
+                btn.innerHTML = "🎁 Bắt đầu bốc thăm";
+                btn.classList.remove('btn-active');
             }
-        });
-        function toggleMusic() {
-            if (!bgMusic.src) return alert("Vui lòng chọn file nhạc trước!");
-            if (isMusicPlaying) { bgMusic.pause(); btnToggleMusic.innerText = "🔇 Paused"; }
-            else { bgMusic.play(); btnToggleMusic.innerText = "🔊 Playing"; }
-            isMusicPlaying = !isMusicPlaying;
         }
+
+        // Reset nút khi hết nhạc
+        luckySound.onended = () => {
+            const btn = document.getElementById('btn-start-lucky');
+            btn.innerHTML = "🎁 Bắt đầu";
+            btn.classList.remove('btn-active');
+        };
+
+        // 2. Chức năng điều chỉnh Volume
+        function changeVolume(val) {
+            userVolume = parseFloat(val);
+            // Nếu nhạc nền đang không bị giảm nhỏ do MC đọc, thì cập nhật ngay
+            if (!isVoicePlaying()) {
+                bgMusic.volume = userVolume;
+            }
+        }
+
+        function isVoicePlaying() {
+            return !voiceAudio.paused && voiceAudio.currentTime > 0;
+        }
+
+        // 3. Logic nhạc nền & MC
+        const slideVoiceMap = {
+            'slide-1': 'voices/1.mp3', 'slide-2': 'voices/2.mp3', 'slide-3': 'voices/3.mp3',
+            'slide-4': 'voices/4.1.mp3', 'slide-5': 'voices/4.2.mp3', 'slide-6': 'voices/5.mp3',
+            'slide-7': 'voices/6.mp3', 'slide-8': 'voices/7.mp3', 'slide-9': null,
+            'slide-10': 'voices/8.mp3', 'slide-11': 'voices/9.mp3'
+        };
+
+        function toggleMusic() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    btnToggleMusic.innerText = "🔊 Nhạc Nền (BẬT)";
+                    btnToggleMusic.classList.add('btn-active');
+                }).catch(e => alert("Vui lòng click vào trang để phát nhạc"));
+            } else {
+                bgMusic.pause();
+                isMusicPlaying = false;
+                btnToggleMusic.innerText = "🔇 Nhạc Nền (Tắt)";
+                btnToggleMusic.classList.remove('btn-active');
+            }
+        }
+
+        function toggleVoice() {
+            isVoiceEnabled = !isVoiceEnabled;
+            updateVoiceBtnState();
+            if (!isVoiceEnabled) {
+                voiceAudio.pause();
+                bgMusic.volume = userVolume; // Trả lại volume gốc
+            }
+        }
+
+        function updateVoiceBtnState() {
+            if (isVoiceEnabled) {
+                btnToggleVoice.innerHTML = "🗣️ Giọng MC (BẬT)";
+                btnToggleVoice.classList.add('btn-active');
+            } else {
+                btnToggleVoice.innerHTML = "🔇 Giọng MC (Tắt)";
+                btnToggleVoice.classList.remove('btn-active');
+            }
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlay = !isAutoPlay;
+            updateAutoPlayBtnState();
+            if (isAutoPlay && voiceAudio.paused) autoPlayTimer = setTimeout(nextSlide, 2000);
+            else clearTimeout(autoPlayTimer);
+        }
+
+        function updateAutoPlayBtnState() {
+            if (isAutoPlay) {
+                btnAutoPlay.innerHTML = "⏯️ Auto: ON";
+                btnAutoPlay.classList.add('btn-autoplay-on');
+            } else {
+                btnAutoPlay.innerHTML = "⏯️ Auto: OFF";
+                btnAutoPlay.classList.remove('btn-autoplay-on');
+            }
+        }
+
+        function playVoiceForSlide(slideId) {
+            const fileName = slideVoiceMap[slideId];
+            if (!fileName) {
+                if (isAutoPlay) autoPlayTimer = setTimeout(nextSlide, 4000);
+                return;
+            }
+
+            voiceAudio.pause();
+            voiceAudio.currentTime = 0;
+            voiceAudio.src = fileName;
+            
+            // Ducking: Giảm nhạc nền xuống 20% so với mức user chọn
+            voiceAudio.onplay = () => { if (!bgMusic.paused) fadeVolume(bgMusic, userVolume * 0.2); };
+            
+            // Hết giọng MC -> Trả lại volume user chọn
+            voiceAudio.onended = () => {
+                if (!bgMusic.paused) fadeVolume(bgMusic, userVolume);
+                if (isAutoPlay) autoPlayTimer = setTimeout(nextSlide, 2000);
+            };
+            
+            voiceAudio.onerror = () => {
+                if (!bgMusic.paused) bgMusic.volume = userVolume;
+                if (isAutoPlay) autoPlayTimer = setTimeout(nextSlide, 4000);
+            };
+
+            setTimeout(() => { voiceAudio.play().catch(e => console.log("User interaction needed")); }, 500);
+        }
+
+        function fadeVolume(audioParams, targetVol) {
+            const step = 0.05;
+            const currentVol = audioParams.volume;
+            if (Math.abs(currentVol - targetVol) < step) { audioParams.volume = targetVol; return; }
+            if (currentVol > targetVol) audioParams.volume = Math.max(0, currentVol - step);
+            else audioParams.volume = Math.min(1, currentVol + step);
+            setTimeout(() => fadeVolume(audioParams, targetVol), 50);
+        }
+
         function toggleFullScreen() {
             !document.fullscreenElement ? document.documentElement.requestFullscreen() : document.exitFullscreen && document.exitFullscreen();
         }
 
-        /* PARTICLES - SHARP SQUARES INSTEAD OF CIRCLES */
+        /* PARTICLES */
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
         let particles = [], particleSpeedMultiplier = 1;
@@ -493,10 +699,7 @@
                 if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
             }
-            draw() { 
-                ctx.fillStyle = this.color; 
-                ctx.fillRect(this.x, this.y, this.size, this.size); 
-            }
+            draw() { ctx.fillStyle = this.color; ctx.fillRect(this.x, this.y, this.size, this.size); }
         }
         function initParticles() { for(let i=0; i<100; i++) particles.push(new Particle()); animateParticles(); }
         function animateParticles() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles); }
