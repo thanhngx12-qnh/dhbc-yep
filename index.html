@@ -3,91 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tà Lùng Logistics - Gameshow (MC Mode)</title>
-    <!-- Tailwind CSS -->
+    <title>Tà Lùng Quang Minh - Gameshow Tết Bính Ngọ 2026</title>
+    
+    <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Config Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'], // Font cho tiêu đề sang trọng
+                        hand: ['Dancing Script', 'cursive'], // Font cho lời chúc
+                    },
+                    colors: {
+                        tet: {
+                            red: '#D90429',       // Đỏ tươi
+                            darkred: '#8D0801',   // Đỏ thẫm
+                            gold: '#FFD700',      // Vàng kim
+                            orange: '#F48C06',    // Cam rực rỡ
+                            cream: '#FFF8E7'      // Kem nền nã
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 10px #FFD700, 0 0 20px #FFD700' },
+                            'to': { boxShadow: '0 0 20px #FFD700, 0 0 30px #FF4500' }
+                        },
+                        shake: {
+                            '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(4px, 0, 0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Slate 50 - Light background */
-            color: #1e293b; /* Slate 800 - Dark text */
+            /* Nền đỏ chuyển sắc sang trọng + Họa tiết chìm */
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+                linear-gradient(135deg, #8D0801 0%, #A4161A 50%, #660708 100%);
+            color: #FFF8E7;
             overflow: hidden;
         }
-        
-        /* Background Pattern for Light Mode */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+
+        /* Hiệu ứng chữ mạ vàng */
+        .text-gold-gradient {
+            background: linear-gradient(to bottom, #FFD700 0%, #FDB931 50%, #F48C06 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+            filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.3));
         }
 
-        .fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Khung viền Tết */
+        .border-tet {
+            border: 2px solid #F48C06;
+            box-shadow: 0 0 15px rgba(244, 140, 6, 0.5), inset 0 0 15px rgba(244, 140, 6, 0.2);
+        }
 
-        .slide-in-right { animation: slideInRight 0.3s ease-out; }
-        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        /* Button phong cách Lì Xì */
+        .btn-lixi {
+            background: linear-gradient(180deg, #FFD700 0%, #F48C06 100%);
+            color: #8D0801;
+            box-shadow: 0 4px 0 #9F3E00, 0 10px 15px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+        .btn-lixi:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #9F3E00, inset 0 2px 5px rgba(0,0,0,0.3);
+        }
 
+        /* Pháo giấy rơi */
         .confetti {
             position: fixed;
-            width: 12px;
-            height: 12px;
-            background-color: #f00;
-            animation: fall linear forwards;
+            width: 10px; height: 10px;
             z-index: 9999;
+            animation: fall linear forwards;
         }
         @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        /* Scrollbar tùy chỉnh */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #660708; }
+        ::-webkit-scrollbar-thumb { background: #F48C06; border-radius: 3px; }
 
-        /* Blur Effect for Pause */
-        .blur-content {
-            filter: blur(15px);
-            opacity: 0.3;
-            pointer-events: none;
-            transition: all 0.3s ease;
+        /* Blur Effect */
+        .blur-content { filter: blur(12px) brightness(0.7); pointer-events: none; transition: all 0.5s ease; }
+        
+        /* Glass effect for admin panel */
+        .glass-panel {
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #F48C06;
         }
     </style>
 </head>
-<body class="bg-grid h-screen flex flex-col">
+<body class="h-screen flex flex-col font-sans selection:bg-yellow-400 selection:text-red-900">
 
-    <!-- Header: Light & Clean -->
-    <header class="bg-white border-b border-slate-200 h-16 flex-none z-20 shadow-sm">
-        <div class="container mx-auto px-6 h-full flex justify-between items-center">
-            <!-- Logo & Company Name -->
-            <div class="flex items-center gap-4">
-                <img src="Logo.png" onerror="this.src='https://placehold.co/100x50/2563eb/ffffff?text=LOGO+PA'" alt="Logo Phú Anh Logistics" class="h-10 w-auto object-contain rounded shadow-sm">
-                <h1 class="text-lg md:text-xl font-bold uppercase tracking-widest text-slate-700 border-l border-slate-300 pl-4">Công ty TNHH Thương mại Vận tải Phú Anh | Tà Lùng Logistics</h1>
+    <!-- HEADER: Mang đậm không khí Tết -->
+    <header class="h-20 flex-none z-30 shadow-2xl relative">
+        <!-- Background Header -->
+        <div class="absolute inset-0 bg-gradient-to-r from-red-900 via-red-800 to-red-900 border-b-2 border-yellow-500"></div>
+        
+        <div class="container mx-auto px-6 h-full flex justify-between items-center relative z-10">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-4 group cursor-default">
+                <div class="h-14 w-auto bg-white rounded-lg p-1 border-2 border-yellow-500 shadow-lg group-hover:rotate-2 transition duration-500">
+                     <!-- Logo Image -->
+                     <img src="Logo.png" onerror="this.src='https://placehold.co/100x100/D90429/FFD700?text=LOGO'" alt="Logo" class="h-full w-auto object-contain">
+                </div>
+                <div>
+                    <h1 class="font-serif text-lg md:text-xl font-bold uppercase tracking-wider text-gold-gradient">
+                        Công Ty Cổ Phần Tà Lùng Quang Minh
+                    </h1>
+                    <div class="text-xs text-yellow-200 font-hand tracking-widest flex items-center gap-2">
+                        <span>🌸 Xuân Bính Ngọ 2026</span>
+                        <span class="w-1 h-1 rounded-full bg-yellow-400"></span>
+                        <span>Vạn Sự Như Ý</span>
+                    </div>
+                </div>
             </div>
             
             <div class="flex items-center gap-6">
-                <!-- Data Source Indicator -->
-                <div id="data-source-badge" class="hidden text-[10px] uppercase font-bold px-2 py-1 rounded bg-gray-100 text-gray-500 border border-gray-300">
+                <!-- Data Source Badge -->
+                <div id="data-source-badge" class="hidden px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-950 text-yellow-500 border border-yellow-600 shadow-inner">
                     Local Storage
                 </div>
 
-                <!-- Score Board -->
-                <div class="flex flex-col items-end">
-                    <span class="text-[10px] uppercase tracking-widest text-slate-500">Tổng điểm</span>
-                    <span id="score-display" class="text-2xl font-black text-blue-600 leading-none">0</span>
+                <!-- Score Board: Hình dáng như tấm hoành phi/câu đối -->
+                <div class="bg-gradient-to-b from-red-700 to-red-900 px-6 py-1 rounded-lg border-2 border-yellow-500 shadow-[0_0_15px_rgba(255,215,0,0.3)] transform hover:scale-105 transition duration-300">
+                    <div class="text-[10px] text-yellow-200 uppercase text-center tracking-widest font-serif">Tổng điểm</div>
+                    <div id="score-display" class="text-3xl font-serif font-bold text-yellow-400 text-center leading-none drop-shadow-md">0</div>
                 </div>
                 
                 <!-- Controls -->
                 <div class="flex gap-2">
-                    <button onclick="app.goHome()" class="w-10 h-10 flex items-center justify-center rounded bg-blue-50 hover:bg-blue-100 text-blue-600 transition" title="Về Trang Chủ">
+                    <button onclick="app.goHome()" class="w-10 h-10 rounded-full bg-red-800 hover:bg-red-700 text-yellow-400 border border-yellow-600/30 flex items-center justify-center transition shadow-lg" title="Trang chủ">
                         <i class="fas fa-home"></i>
                     </button>
-                    <button onclick="app.toggleFullScreen()" class="w-10 h-10 flex items-center justify-center rounded bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Toàn màn hình">
+                    <button onclick="app.toggleFullScreen()" class="w-10 h-10 rounded-full bg-red-800 hover:bg-red-700 text-yellow-400 border border-yellow-600/30 flex items-center justify-center transition shadow-lg" title="Toàn màn hình">
                         <i class="fas fa-expand"></i>
                     </button>
-                    <button onclick="app.toggleAdmin()" class="w-10 h-10 flex items-center justify-center rounded bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Cài đặt">
+                    <button onclick="app.toggleAdmin()" class="w-10 h-10 rounded-full bg-yellow-500 hover:bg-yellow-400 text-red-900 border border-yellow-600 flex items-center justify-center transition shadow-lg animate-pulse" title="Cài đặt">
                         <i class="fas fa-cog"></i>
                     </button>
                 </div>
@@ -95,242 +172,266 @@
         </div>
     </header>
 
-    <!-- Main Game Area -->
-    <main class="flex-grow flex flex-col relative p-4 overflow-hidden h-full">
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow flex flex-col relative overflow-hidden p-4 md:p-6">
         
-        <!-- START SCREEN (Light) -->
-        <div id="start-screen" class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/95 backdrop-blur-sm fade-in">
-            <div class="text-center max-w-4xl px-4">
-                <div class="mb-6 inline-block p-6 rounded-full bg-blue-50">
-                    <i class="fas fa-gamepad text-6xl text-blue-600"></i>
-                </div>
-                <h2 class="text-5xl md:text-7xl font-black text-slate-800 mb-4 tracking-tight uppercase drop-shadow-sm">
-                    Đuổi Hình <span class="text-blue-600">Bắt Chữ</span>
-                </h2>
-                <p class="text-xl text-slate-500 mb-12 font-medium">Chương trình đào tạo & giải trí nội bộ</p>
-                
-                <button onclick="app.startGame()" class="group relative px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-2xl rounded-full transition-all shadow-lg hover:shadow-blue-500/30">
-                    <span class="flex items-center gap-3">
-                        BẮT ĐẦU NGAY <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                    </span>
-                </button>
-                <div id="db-status" class="mt-4 text-sm text-slate-400 italic"></div>
+        <!-- DECORATION: Hoa mai, hoa đào bay (CSS animation) -->
+        <div class="absolute top-10 left-10 text-4xl opacity-20 animate-float pointer-events-none">🌸</div>
+        <div class="absolute bottom-20 right-20 text-5xl opacity-20 animate-float pointer-events-none" style="animation-delay: 1s;">🌼</div>
+        <div class="absolute top-1/2 left-20 text-3xl opacity-10 animate-float pointer-events-none" style="animation-delay: 2s;">🧧</div>
+
+        <!-- START SCREEN -->
+        <div id="start-screen" class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center fade-in">
+            <!-- Icon chính giữa -->
+            <div class="mb-6 relative animate-float">
+                <div class="absolute inset-0 bg-yellow-500 blur-[60px] opacity-20 rounded-full"></div>
+                <div class="text-9xl drop-shadow-2xl">🏮</div>
             </div>
+            
+            <h1 class="text-6xl md:text-8xl font-serif font-black text-gold-gradient mb-2 uppercase tracking-tight drop-shadow-xl">
+                Đuổi Hình <br/><span class="text-white drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">Bắt Chữ</span>
+            </h1>
+            
+            <div class="text-2xl text-yellow-200 font-hand mb-10 mt-4 tracking-wider">
+                🎋 Chúc Mừng Năm Mới - An Khang Thịnh Vượng 🎋
+            </div>
+            
+            <button onclick="app.startGame()" class="group relative px-12 py-5 btn-lixi rounded-full text-xl md:text-2xl font-bold uppercase tracking-wider overflow-hidden">
+                <span class="relative z-10 flex items-center gap-3">
+                    Khai Xuân Ngay <i class="fas fa-dragon text-lg"></i>
+                </span>
+                <div class="absolute inset-0 bg-white/30 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </button>
+            <div id="db-status" class="mt-8 text-sm text-red-300 italic font-serif"></div>
         </div>
 
-        <!-- GAMEPLAY SCREEN -->
-        <div id="game-screen" class="hidden flex-col w-full h-full max-w-full mx-auto gap-3">
+        <!-- GAME SCREEN -->
+        <div id="game-screen" class="hidden flex-col w-full h-full gap-4 md:gap-6 max-w-[1800px] mx-auto">
             
-            <!-- Top Bar: Compact -->
-            <div class="flex items-stretch gap-4 h-16 flex-none">
-                <!-- Question Number Badge -->
-                <div class="w-20 bg-white border border-slate-200 rounded-lg flex flex-col items-center justify-center shadow-sm">
-                    <span class="text-[10px] text-slate-400 uppercase font-bold">Câu hỏi</span>
-                    <span id="question-count" class="text-2xl font-black text-slate-700">1</span>
-                </div>
-
-                <!-- Timer Bar -->
-                <div class="flex-grow bg-white border border-slate-200 rounded-lg relative overflow-hidden flex items-center px-6 shadow-sm">
-                    <!-- Progress Bar Background -->
-                    <div class="absolute bottom-0 left-0 h-1.5 bg-slate-100 w-full"></div>
-                    <div id="timer-bar" class="absolute bottom-0 left-0 h-1.5 bg-green-500 w-full transition-all duration-1000 ease-linear"></div>
-                    
-                    <div class="flex justify-between w-full items-baseline z-10">
-                        <span class="text-slate-400 font-bold uppercase tracking-widest text-xs">Thời gian suy nghĩ</span>
-                        <span id="timer-text" class="text-3xl font-mono font-bold text-slate-700 tabular-nums">30</span>
+            <!-- Question Info Bar -->
+            <div class="flex items-center gap-6 h-24 flex-none">
+                <!-- Badge Câu Hỏi - Đã bỏ đồng hồ ở đây -->
+                <div class="w-full bg-red-900/50 backdrop-blur-sm border-tet rounded-xl flex items-center justify-center px-8 shadow-xl relative overflow-hidden h-full">
+                    <div class="absolute left-0 top-0 bottom-0 w-2 bg-yellow-500"></div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-lg text-yellow-500 uppercase font-bold tracking-widest mb-1">Câu hỏi số</span>
+                        <span id="question-count" class="text-6xl font-serif font-bold text-white leading-none">01</span>
                     </div>
+                    <div class="absolute right-0 top-0 bottom-0 w-2 bg-yellow-500"></div>
                 </div>
             </div>
 
-            <!-- Main Content: Image & Controls -->
+            <!-- Content Area -->
             <div class="flex-grow flex gap-4 min-h-0 relative">
                 
-                <!-- PAUSE OVERLAY (Hiện khi tạm dừng) -->
-                <div id="pause-overlay" class="hidden absolute inset-0 z-30 flex items-center justify-center">
-                    <div class="bg-black/70 backdrop-blur-md px-8 py-4 rounded-full text-white font-bold text-2xl shadow-2xl border border-white/20 animate-bounce">
-                        <i class="fas fa-pause-circle mr-2"></i> ĐANG TẠM DỪNG
-                    </div>
-                </div>
+                <!-- Main Image Box (Khung tranh) - Tăng kích thước -->
+                <div class="flex-grow bg-red-950 rounded-2xl border-[6px] border-[#8D0801] shadow-[0_0_30px_rgba(0,0,0,0.5)] relative flex items-center justify-center overflow-hidden group">
+                    <!-- Họa tiết góc khung -->
+                    <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-yellow-500 rounded-tl-xl z-20 opacity-50"></div>
+                    <div class="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-yellow-500 rounded-tr-xl z-20 opacity-50"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-yellow-500 rounded-bl-xl z-20 opacity-50"></div>
+                    <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-yellow-500 rounded-br-xl z-20 opacity-50"></div>
 
-                <!-- Left: Image Container (Chiếm phần lớn diện tích) -->
-                <div class="flex-grow bg-slate-200/50 border border-slate-300 rounded-xl flex items-center justify-center relative overflow-hidden group shadow-inner">
-                    <!-- Image Wrapper to apply Blur -->
-                    <div id="image-container-inner" class="w-full h-full relative flex items-center justify-center">
-                        <!-- Use onerror to show placeholder if local file not found -->
-                        <img id="question-image" src="" alt="Image" onerror="this.src='https://placehold.co/1280x720/f1f5f9/1e293b?text=KHONG+TIM+THAY+ANH\n(Kiem+tra+thu+muc+images)'" class="w-full h-full object-contain p-2 opacity-0 transition-opacity duration-500">
+                    <!-- Image Container -->
+                    <div id="image-container-inner" class="w-full h-full relative flex items-center justify-center p-2 bg-black/30">
+                        <img id="question-image" src="" alt="Question" class="w-full h-full object-contain rounded shadow-2xl transition-opacity duration-500 opacity-0">
+                    </div>
+
+                    <!-- Overlays -->
+                    <div id="image-overlay" class="absolute inset-0 bg-red-900/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                        <div class="text-yellow-200 text-3xl mb-8 font-serif uppercase tracking-widest border-b border-yellow-500/30 pb-2">🏮 Thử thách 🏮</div>
+                        <button onclick="app.startTimer()" class="w-32 h-32 rounded-full bg-yellow-500 hover:bg-yellow-400 text-red-900 shadow-[0_0_50px_rgba(255,215,0,0.5)] flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 animate-pulse">
+                            <i class="fas fa-play text-5xl ml-2"></i>
+                        </button>
+                        <div class="mt-6 text-base text-yellow-500/60 uppercase font-bold tracking-widest">Nhấn để hiện ảnh</div>
+                    </div>
+
+                    <!-- Pause Overlay -->
+                    <div id="pause-overlay" class="hidden absolute inset-0 bg-black/70 backdrop-blur-md z-30 flex items-center justify-center">
+                        <div class="bg-red-900/90 border-4 border-yellow-500 px-12 py-8 rounded-2xl shadow-2xl transform scale-110">
+                            <div class="text-yellow-400 text-5xl font-serif font-bold uppercase tracking-widest flex items-center gap-4">
+                                <i class="fas fa-pause-circle"></i> Tạm dừng
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Overlay: Ready State -->
-                    <div id="image-overlay" class="absolute inset-0 bg-slate-100 z-10 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-slate-400 text-2xl mb-6 font-light">Sẵn sàng chưa?</div>
-                            <button onclick="app.startTimer()" class="bg-blue-600 hover:bg-blue-700 text-white text-2xl font-bold py-4 px-10 rounded-full shadow-xl transition transform hover:scale-105 active:scale-95">
-                                <i class="fas fa-play mr-2"></i> HIỆN HÌNH ẢNH
-                            </button>
+                    <!-- Timeout Overlay (Hết giờ) -->
+                    <div id="timeout-overlay" class="hidden absolute inset-0 bg-black/80 backdrop-blur-md z-30 flex items-center justify-center animate-shake">
+                        <div class="bg-red-600 border-4 border-white px-16 py-10 rounded-3xl shadow-[0_0_100px_rgba(255,0,0,0.8)] text-center relative overflow-hidden">
+                             <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                            <div class="text-white text-8xl font-black uppercase tracking-widest drop-shadow-xl relative z-10 font-sans">
+                                <i class="fas fa-clock mb-4 block text-6xl"></i>
+                                HẾT GIỜ!
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Overlay: Answer Reveal -->
-                    <div id="answer-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center text-center translate-y-full transition-transform duration-500 z-20">
-                        <div class="text-yellow-400 font-bold text-xl uppercase tracking-[0.2em] mb-4">Đáp án chính xác</div>
-                        <div id="revealed-answer-text" class="text-6xl md:text-8xl font-black text-white drop-shadow-2xl uppercase tracking-tighter px-4 leading-tight">
+                    <!-- Answer Overlay -->
+                    <div id="answer-overlay" class="absolute inset-0 bg-gradient-to-br from-red-900 via-red-800 to-black backdrop-blur-xl flex flex-col items-center justify-center text-center translate-y-full transition-transform duration-700 ease-out z-20">
+                        <div class="text-yellow-500/80 font-bold text-lg uppercase tracking-[0.5em] mb-8">Đáp án chính xác</div>
+                        <div id="revealed-answer-text" class="text-5xl md:text-7xl lg:text-8xl font-black text-gold-gradient uppercase tracking-normal px-4 py-4 md:px-8 leading-normal font-serif drop-shadow-2xl w-full text-center break-words">
                             LOGISTICS
                         </div>
+                        <div class="mt-10 text-5xl animate-bounce">🧧</div>
                     </div>
                 </div>
 
-                <!-- Right: Hint & MC Controls (Sidebar) -->
-                <!-- Added relative z-40 to ensure buttons are clickable above overlay -->
-                <div class="w-72 flex-none flex flex-col gap-3 relative z-40">
+                <!-- Sidebar Controls - Thu nhỏ kích thước -->
+                <div class="w-64 flex-none flex flex-col gap-4 z-40">
                     
-                    <!-- Hint Box -->
-                    <div id="hint-box" class="bg-white border-l-4 border-yellow-500 rounded-lg p-5 shadow-sm transition-all duration-300">
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
-                            <span class="text-slate-400 uppercase text-[10px] font-bold tracking-widest">Gợi ý cho MC</span>
+                    <!-- Hint Card -->
+                    <div id="hint-box" class="bg-gradient-to-br from-red-800 to-red-900 border border-yellow-500/30 rounded-xl p-5 shadow-xl relative overflow-hidden group transition-all duration-300">
+                        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                        <div class="flex items-center gap-2 mb-2 relative z-10">
+                            <div class="w-6 h-6 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <span class="text-[10px] uppercase font-bold text-yellow-500 tracking-widest">Gợi ý MC</span>
                         </div>
-                        <p id="question-hint" class="text-lg font-bold text-slate-700 leading-snug">
+                        <p id="question-hint" class="text-lg font-bold text-white leading-relaxed font-serif relative z-10">
                             ...
                         </p>
                     </div>
 
-                    <!-- Control Panel -->
-                    <div class="flex-grow bg-white border border-slate-200 rounded-lg p-4 flex flex-col justify-end gap-3 shadow-sm">
-                        <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 text-center">Điều khiển</div>
+                    <!-- NEW TIMER POSITION -->
+                    <div class="bg-black/20 border border-yellow-500/50 rounded-xl p-4 text-center relative overflow-hidden group shadow-lg">
+                        <span class="text-[10px] uppercase font-bold text-yellow-500 tracking-widest mb-1 block">Thời gian</span>
+                        <div id="timer-text" class="text-6xl font-mono font-black text-white tabular-nums leading-none tracking-tighter drop-shadow-md">30</div>
                         
-                        <!-- Nút bắt đầu -->
-                        <button id="btn-start-timer" onclick="app.startTimer()" class="w-full py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition transform active:scale-95">
-                            BẮT ĐẦU
-                        </button>
+                        <!-- Progress Bar at bottom -->
+                        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-white/10">
+                             <div id="timer-bar" class="absolute top-0 left-0 h-full w-full bg-yellow-500 shadow-[0_0_10px_#F48C06] transition-all duration-1000 ease-linear"></div>
+                        </div>
+                    </div>
+
+                    <!-- Controller Pad -->
+                    <div class="flex-grow bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 flex flex-col gap-3 shadow-lg">
+                        <div class="text-center text-[9px] uppercase tracking-widest text-yellow-500/50 mb-1">Điều khiển</div>
                         
-                        <!-- Nút Tạm Dừng -->
-                        <button id="btn-pause" onclick="app.togglePause()" class="hidden w-full py-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg shadow-md transition transform active:scale-95">
-                            <i class="fas fa-pause mr-2"></i> TẠM DỪNG
-                        </button>
+                        <div class="flex flex-col gap-2 flex-grow justify-end">
+                            <button id="btn-start-timer" onclick="app.startTimer()" class="w-full py-4 bg-green-700 hover:bg-green-600 text-white font-bold rounded-lg shadow-lg border-b-4 border-green-900 transition active:border-b-0 active:translate-y-1 text-sm">
+                                <i class="fas fa-hourglass-start mr-2"></i> BẮT ĐẦU
+                            </button>
+                            
+                            <div class="grid grid-cols-2 gap-2">
+                                <!-- Nút nhỏ hơn: py-3 text-xs -->
+                                <button id="btn-pause" onclick="app.togglePause()" class="hidden py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg shadow border-b-4 border-yellow-800 transition active:border-b-0 active:translate-y-1 text-xs">
+                                    <i class="fas fa-pause mr-1"></i> TẠM DỪNG
+                                </button>
+                                <button id="btn-resume" onclick="app.togglePause()" class="hidden py-3 bg-green-700 hover:bg-green-600 text-white font-bold rounded-lg shadow border-b-4 border-green-900 transition active:border-b-0 active:translate-y-1 col-span-2 text-xs">
+                                    <i class="fas fa-play mr-1"></i> TIẾP TỤC
+                                </button>
+                                <button id="btn-reveal" onclick="app.revealAnswer()" class="hidden py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-lg shadow border-b-4 border-orange-800 transition active:border-b-0 active:translate-y-1 col-span-2 text-xs">
+                                    HIỆN ĐÁP ÁN
+                                </button>
+                            </div>
 
-                        <!-- Nút Tiếp tục (Hiện khi Pause) -->
-                        <button id="btn-resume" onclick="app.togglePause()" class="hidden w-full py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-md transition transform active:scale-95">
-                            <i class="fas fa-play mr-2"></i> TIẾP TỤC
-                        </button>
-
-                        <!-- Nút hiện đáp án -->
-                        <button id="btn-reveal" onclick="app.revealAnswer()" class="hidden w-full py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-md transition transform active:scale-95">
-                            HIỆN ĐÁP ÁN
-                        </button>
-
-                         <!-- Nút câu tiếp theo -->
-                         <button id="btn-next" onclick="app.nextQuestion()" class="hidden w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition transform active:scale-95">
-                            CÂU TIẾP THEO <i class="fas fa-forward ml-2"></i>
-                        </button>
+                            <button id="btn-next" onclick="app.nextQuestion()" class="hidden w-full py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold rounded-lg shadow-lg border-b-4 border-blue-900 transition active:border-b-0 active:translate-y-1 text-sm">
+                                CÂU TIẾP THEO <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ADMIN PANEL (Light Mode) -->
-        <div id="admin-panel" class="hidden fixed inset-0 z-50 flex justify-end bg-black/20 backdrop-blur-sm transition-opacity">
-            <div class="w-full max-w-2xl bg-white h-full shadow-2xl border-l border-slate-200 flex flex-col animate-slide-in-right">
-                <!-- Admin Header -->
-                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-                    <h2 class="text-2xl font-bold text-slate-800"><i class="fas fa-cogs mr-2 text-blue-600"></i> Cấu hình</h2>
-                    <button onclick="app.toggleAdmin()" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times fa-lg"></i></button>
+        <!-- ADMIN PANEL (Light Theme for Readability) -->
+        <div id="admin-panel" class="hidden fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-sm transition-opacity">
+            <div class="w-full max-w-2xl glass-panel h-full shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-full" id="admin-content">
+                <!-- Header -->
+                <div class="p-6 border-b border-orange-200 flex justify-between items-center bg-orange-50/50">
+                    <h2 class="text-2xl font-serif font-bold text-red-800"><i class="fas fa-sliders-h mr-2"></i> Cấu hình hệ thống</h2>
+                    <button onclick="app.toggleAdmin()" class="w-8 h-8 rounded-full bg-red-100 text-red-800 hover:bg-red-200 transition flex items-center justify-center"><i class="fas fa-times"></i></button>
                 </div>
 
-                <!-- Admin Content -->
-                <div class="flex-grow overflow-y-auto p-6 space-y-8 bg-white">
+                <!-- Body -->
+                <div class="flex-grow overflow-y-auto p-6 space-y-8 bg-tet-cream text-slate-700">
                     
-                    <!-- File System Guide -->
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800">
-                        <h4 class="font-bold mb-2"><i class="fas fa-database"></i> Quản lý Database (database.json):</h4>
-                        <p class="mb-2">Hệ thống sẽ tự động tìm file <strong>database.json</strong> cùng thư mục.</p>
-                        <ul class="list-disc list-inside space-y-1 text-xs">
-                            <li>Nếu có file: Dữ liệu sẽ được load từ file.</li>
-                            <li>Nếu không có file (hoặc bị chặn): Sẽ dùng dữ liệu LocalStorage.</li>
-                            <li><strong>Lưu ý:</strong> Chỉnh sửa/Thêm/Xóa ở đây CHỈ lưu vào bộ nhớ tạm. Để cập nhật file database.json, hãy dùng nút "Xuất File" bên dưới và ghi đè file cũ.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Data Management (Export/Import) -->
-                    <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                         <h4 class="font-bold text-slate-700 mb-3 text-sm uppercase">Sao lưu dữ liệu</h4>
-                         <div class="flex gap-4">
-                             <button onclick="app.exportData()" class="flex-1 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold py-2 rounded shadow-sm text-sm">
-                                 <i class="fas fa-download mr-2"></i> Tải file database.json mới
+                    <!-- Data Mgr -->
+                    <div class="bg-white border border-orange-200 rounded-xl p-5 shadow-sm">
+                         <h4 class="font-bold text-xs text-orange-600 uppercase tracking-widest mb-4">Quản lý dữ liệu (JSON)</h4>
+                         <div class="flex gap-3">
+                             <button onclick="app.exportData()" class="flex-1 bg-white border border-slate-300 hover:bg-orange-50 text-slate-700 font-bold py-2 rounded-lg transition text-sm shadow-sm">
+                                 <i class="fas fa-download mr-2 text-orange-500"></i> Tải file Backup
                              </button>
                              <div class="flex-1 relative">
                                 <input type="file" id="import-file" accept=".json" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="app.importData(this)">
-                                <button class="w-full bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold py-2 rounded shadow-sm text-sm">
-                                    <i class="fas fa-upload mr-2"></i> Nhập File khác
+                                <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg transition text-sm shadow-md">
+                                    <i class="fas fa-upload mr-2"></i> Nhập dữ liệu
                                 </button>
                              </div>
                          </div>
                     </div>
 
                     <!-- Settings -->
-                    <div class="space-y-3">
-                        <label class="block text-xs font-bold text-slate-400 uppercase">Thời gian đếm ngược (giây)</label>
-                        <div class="flex gap-4">
-                            <input type="number" id="setting-time" class="flex-grow bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3 rounded focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" value="30">
-                            <button onclick="app.saveSettings()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded font-bold shadow-sm">Lưu</button>
+                    <div class="grid grid-cols-3 gap-4 items-end">
+                        <div class="col-span-2">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Thời gian suy nghĩ (giây)</label>
+                            <input type="number" id="setting-time" class="w-full bg-white border border-slate-300 text-slate-800 px-4 py-3 rounded-lg focus:border-orange-500 outline-none font-mono font-bold text-lg" value="30">
                         </div>
+                        <button onclick="app.saveSettings()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-lg transition shadow-md">Lưu</button>
                     </div>
 
-                    <hr class="border-slate-100">
+                    <hr class="border-orange-200 border-dashed">
 
-                    <!-- Question Form -->
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-4 relative">
-                        <div class="flex justify-between items-center">
-                            <h3 id="form-title" class="text-lg font-bold text-blue-600">Thêm câu hỏi mới</h3>
-                            <button id="btn-cancel-edit" onclick="app.cancelEdit()" class="hidden text-xs text-red-500 hover:text-red-600 border border-red-200 bg-white px-2 py-1 rounded">Hủy sửa</button>
+                    <!-- Form -->
+                    <div class="bg-orange-50 rounded-xl p-6 border border-orange-200 relative">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 id="form-title" class="text-lg font-serif font-bold text-red-800">Thêm câu hỏi mới</h3>
+                            <button id="btn-cancel-edit" onclick="app.cancelEdit()" class="hidden text-xs text-red-500 hover:text-red-700 underline font-bold">Hủy bỏ</button>
                         </div>
                         
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Đáp án</label>
-                            <input type="text" id="new-answer" class="w-full bg-white border border-slate-300 text-slate-800 px-3 py-2 rounded focus:border-blue-500 focus:outline-none uppercase font-bold" placeholder="VD: KHO BAI">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Đường dẫn ảnh / Tên file ảnh</label>
-                            <input type="text" id="new-image" class="w-full bg-white border border-slate-300 text-slate-800 px-3 py-2 rounded focus:border-blue-500 focus:outline-none placeholder-slate-400 text-sm font-mono" placeholder="VD: images/cau1.jpg">
-                            <div class="mt-2 text-[10px] text-slate-400 flex items-center gap-2">
-                                <span>Hoặc chọn ảnh để mã hóa (Không khuyến khích cho folder local):</span>
-                                <input type="file" id="new-image-upload" accept="image/*" class="text-[10px]">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase">Đáp án</label>
+                                <input type="text" id="new-answer" class="w-full mt-1 bg-white border border-slate-300 text-slate-900 px-4 py-2 rounded-lg focus:border-orange-500 outline-none font-bold uppercase placeholder-slate-400 shadow-sm" placeholder="VD: BÁNH CHƯNG">
                             </div>
-                        </div>
+                            
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase">Hình ảnh</label>
+                                <div class="flex gap-2 mt-1">
+                                    <input type="text" id="new-image" class="flex-grow bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg focus:border-orange-500 outline-none text-sm font-mono placeholder-slate-400 shadow-sm" placeholder="Link ảnh hoặc tên file...">
+                                    <label class="cursor-pointer bg-white border border-slate-300 px-3 py-2 rounded-lg hover:bg-slate-50 shadow-sm" title="Chọn ảnh từ máy">
+                                        <i class="fas fa-folder-open text-slate-500"></i>
+                                        <input type="file" id="new-image-upload" accept="image/*" class="hidden">
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase">Gợi ý</label>
+                                <input type="text" id="new-hint" class="w-full mt-1 bg-white border border-slate-300 text-slate-700 px-4 py-2 rounded-lg focus:border-orange-500 outline-none text-sm shadow-sm" placeholder="Gợi ý cho MC...">
+                            </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Gợi ý</label>
-                            <input type="text" id="new-hint" class="w-full bg-white border border-slate-300 text-slate-800 px-3 py-2 rounded focus:border-blue-500 focus:outline-none" placeholder="Nhập gợi ý cho MC...">
+                            <button id="btn-save-question" onclick="app.saveQuestion()" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-3 rounded-lg shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 mt-2">
+                                <i class="fas fa-plus-circle"></i> Thêm vào danh sách
+                            </button>
                         </div>
-
-                        <button id="btn-save-question" onclick="app.saveQuestion()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-md transition mt-2 flex items-center justify-center gap-2">
-                            <i class="fas fa-plus"></i> Thêm vào danh sách
-                        </button>
                     </div>
 
                     <!-- List -->
                     <div>
-                        <h3 class="text-lg font-bold text-slate-700 mb-4">Danh sách câu hỏi (<span id="q-count-admin">0</span>)</h3>
-                        <div class="border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase mb-3 flex justify-between items-center">
+                            Danh sách câu hỏi <span class="bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs" id="q-count-admin">0</span>
+                        </h3>
+                        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
                             <table class="w-full text-left text-sm">
-                                <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-xs border-b border-slate-200">
+                                <thead class="bg-slate-50 text-slate-500 uppercase font-bold text-[10px]">
                                     <tr>
-                                        <th class="p-3">Hình ảnh</th>
-                                        <th class="p-3">Đáp án</th>
-                                        <th class="p-3 text-right">Thao tác</th>
+                                        <th class="p-3">Ảnh</th>
+                                        <th class="p-3">Đáp án / Gợi ý</th>
+                                        <th class="p-3 text-right">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="question-list-body" class="divide-y divide-slate-100 bg-white text-slate-700">
-                                    <!-- Render here -->
+                                <tbody id="question-list-body" class="divide-y divide-slate-100 text-slate-700">
+                                    <!-- Dynamic -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
-                    <div class="pt-4 text-center">
-                        <button onclick="app.resetToDefault()" class="text-red-500 hover:text-red-600 text-xs font-bold uppercase tracking-widest border border-red-200 px-4 py-2 rounded hover:bg-red-50 transition">
-                            Reset dữ liệu gốc
-                        </button>
+                    
+                    <div class="text-center pt-4">
+                        <button onclick="app.resetToDefault()" class="text-xs text-red-400 hover:text-red-600 underline">Reset về mặc định</button>
                     </div>
                 </div>
             </div>
@@ -339,23 +440,22 @@
     </main>
 
     <script>
-        // --- HELPER FUNCTIONS ---
-        const getPlaceholder = (text) => `https://placehold.co/1280x720/f1f5f9/1e293b?text=${encodeURIComponent(text)}`;
+        // --- UTILS ---
+        // Tạo ảnh placeholder màu đỏ/vàng cho hợp theme
+        const getPlaceholder = (text) => `https://placehold.co/1280x720/8D0801/FFD700?text=${encodeURIComponent(text)}`;
         const $ = (id) => document.getElementById(id);
 
-        // --- SOUND EFFECTS ---
+        // --- SOUNDS (Sử dụng link online ổn định hoặc file local nếu có) ---
         const sounds = {
-            // Updated to use local files as requested
-            correct: new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3'), // Giữ lại online cho sound correct
-            wrong: new Audio('time-out.mp3'), // Local file
-            tick: new Audio('ticking.mp3'),   // Local file
-            win: new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3') // Giữ lại online
+            correct: new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3'), // Tiếng chuông reo
+            wrong: new Audio('https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3'),   // Tiếng buzz
+            tick: new Audio('https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3'),    // Tiếng đồng hồ
+            win: new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3')     // Nhạc chiến thắng
         };
-        
-        // Preload sounds
+        // Preload
         Object.values(sounds).forEach(s => s.load());
 
-        // --- IMAGE PROCESSING HELPER (Resize & Compress) ---
+        // --- IMAGE PROCESSOR ---
         const processImage = (file) => {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -365,7 +465,7 @@
                         const canvas = document.createElement('canvas');
                         let width = img.width;
                         let height = img.height;
-                        const MAX_SIZE = 1000; 
+                        const MAX_SIZE = 1200; // Tăng chất lượng ảnh
 
                         if (width > height) {
                             if (width > MAX_SIZE) {
@@ -378,15 +478,13 @@
                                 height = MAX_SIZE;
                             }
                         }
-
                         canvas.width = width;
                         canvas.height = height;
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, width, height);
-                        
-                        resolve(canvas.toDataURL('image/jpeg', 0.8)); 
+                        resolve(canvas.toDataURL('image/jpeg', 0.85)); 
                     };
-                    img.onerror = () => reject(new Error("Lỗi tải ảnh"));
+                    img.onerror = () => reject(new Error("Lỗi file ảnh"));
                     img.src = e.target.result;
                 };
                 reader.onerror = reject;
@@ -394,7 +492,7 @@
             });
         };
 
-        // --- DEFAULT DATA (Fallback) ---
+        // --- DATA ---
         const defaultData = [
             { id: 1, answer: "TA LUNG", image: getPlaceholder("CỬA KHẨU ?"), hint: "Tên cửa khẩu quốc tế tại Cao Bằng." },
             { id: 2, answer: "30 HECTA", image: getPlaceholder("DIỆN TÍCH ?"), hint: "Tổng diện tích 3 bãi chính của công ty." },
@@ -414,10 +512,18 @@
                 isPaused: false,
                 isRevealed: false,
                 editingId: null,
-                source: 'local' // 'json' or 'local'
+                source: 'local'
             },
 
             init: function() {
+                // Animation cho Admin Panel lúc mở
+                const adminPanel = $('admin-content');
+                adminPanel.addEventListener('transitionend', () => {
+                    if ($('admin-panel').classList.contains('hidden')) {
+                         adminPanel.classList.add('translate-x-full');
+                    }
+                });
+
                 this.loadData();
                 this.renderAdminList();
             },
@@ -425,7 +531,7 @@
             loadData: async function() {
                 let loaded = false;
                 
-                // 1. Try to load external JSON (database.json)
+                // 1. Load JSON file
                 try {
                     const response = await fetch('database.json');
                     if (response.ok) {
@@ -434,23 +540,17 @@
                             this.data = json;
                             this.state.source = 'json';
                             loaded = true;
-                            console.log("Loaded from database.json");
-                            
-                            // UI Feedback
                             $('data-source-badge').innerText = "DATABASE.JSON";
-                            $('data-source-badge').classList.remove('hidden', 'text-gray-500', 'bg-gray-100');
-                            $('data-source-badge').classList.add('text-green-600', 'bg-green-100', 'border-green-300');
-                            $('db-status').innerHTML = '<span class="text-green-600"><i class="fas fa-check-circle"></i> Đã kết nối database.json</span>';
+                            $('data-source-badge').classList.remove('hidden');
+                            $('db-status').innerHTML = '<span class="text-yellow-400"><i class="fas fa-database"></i> Đã kết nối dữ liệu máy chủ</span>';
                         }
                     }
-                } catch (e) {
-                    console.log("Cannot load database.json (normal if offline without server). Using fallback.");
-                }
+                } catch (e) {}
 
-                // 2. Fallback to Local Storage if JSON failed or empty
+                // 2. Load LocalStorage
                 if (!loaded) {
                     try {
-                        const storedData = localStorage.getItem('phuanh_data_v3');
+                        const storedData = localStorage.getItem('phuanh_data_v4');
                         if (storedData) {
                             this.data = JSON.parse(storedData);
                             this.state.source = 'local';
@@ -459,21 +559,21 @@
                     } catch(e) {}
                 }
 
-                // 3. Fallback to Default Hardcoded Data
+                // 3. Default
                 if (!loaded) {
                     this.data = JSON.parse(JSON.stringify(defaultData));
                     this.state.source = 'default';
                 }
 
-                // UI for Local Storage Source
                 if (this.state.source !== 'json') {
                     $('data-source-badge').innerText = "LOCAL STORAGE";
                     $('data-source-badge').classList.remove('hidden');
-                    $('db-status').innerHTML = '<span class="text-orange-500"><i class="fas fa-exclamation-circle"></i> Đang dùng bộ nhớ trình duyệt</span>';
+                    if(this.state.source === 'default') $('db-status').innerHTML = 'Đang dùng dữ liệu mẫu (Chưa có câu hỏi)';
+                    else $('db-status').innerHTML = '<span class="text-orange-400"><i class="fas fa-hdd"></i> Đang dùng bộ nhớ trình duyệt</span>';
                 }
 
                 // Load Settings
-                const storedSettings = localStorage.getItem('phuanh_settings_v3');
+                const storedSettings = localStorage.getItem('phuanh_settings_v4');
                 if (storedSettings) {
                     this.settings = JSON.parse(storedSettings);
                     $('setting-time').value = this.settings.timePerQuestion;
@@ -483,27 +583,24 @@
             },
 
             saveData: function() {
-                // Always save to localStorage as backup/working memory
                 try {
-                    localStorage.setItem('phuanh_data_v3', JSON.stringify(this.data));
-                    localStorage.setItem('phuanh_settings_v3', JSON.stringify(this.settings));
+                    localStorage.setItem('phuanh_data_v4', JSON.stringify(this.data));
+                    localStorage.setItem('phuanh_settings_v4', JSON.stringify(this.settings));
                     this.renderAdminList();
                     $('q-count-admin').innerText = this.data.length;
                 } catch (e) {
-                    alert("Bộ nhớ trình duyệt đã đầy! Hãy xóa bớt câu hỏi cũ.");
+                    alert("Bộ nhớ trình duyệt đầy!");
                 }
             },
 
-            // --- EXPORT / IMPORT ---
             exportData: function() {
-                // Export as 'database.json' so user can overwrite the file
                 const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.data, null, 2));
-                const downloadAnchorNode = document.createElement('a');
-                downloadAnchorNode.setAttribute("href", dataStr);
-                downloadAnchorNode.setAttribute("download", "database.json");
-                document.body.appendChild(downloadAnchorNode); 
-                downloadAnchorNode.click();
-                downloadAnchorNode.remove();
+                const node = document.createElement('a');
+                node.setAttribute("href", dataStr);
+                node.setAttribute("download", "database.json");
+                document.body.appendChild(node); 
+                node.click();
+                node.remove();
             },
 
             importData: function(input) {
@@ -516,49 +613,41 @@
                         if (Array.isArray(json)) {
                             this.data = json;
                             this.saveData();
-                            alert("Đã nhập dữ liệu thành công! (Lưu ý: Đây là dữ liệu trong bộ nhớ tạm)");
+                            alert("Nhập dữ liệu thành công!");
                             input.value = ''; 
-                            location.reload(); // Reload to refresh state
-                        } else {
-                            alert("File không đúng định dạng!");
-                        }
-                    } catch (err) {
-                        alert("Lỗi đọc file JSON!");
-                    }
+                            location.reload();
+                        } else alert("File lỗi!");
+                    } catch (err) { alert("Lỗi đọc file!"); }
                 };
                 reader.readAsText(file);
             },
 
             resetToDefault: function() {
-                if(confirm("Bạn muốn xóa hết câu hỏi và dùng bộ mặc định?")) {
-                    localStorage.removeItem('phuanh_data_v3');
+                if(confirm("Xóa toàn bộ dữ liệu hiện tại?")) {
+                    localStorage.removeItem('phuanh_data_v4');
                     location.reload();
                 }
             },
 
-            // --- AUDIO ---
             playSound: function(type) {
                 try {
                     if (sounds[type]) {
                         sounds[type].currentTime = 0;
-                        sounds[type].play().catch(e => console.log("Audio play failed:", e));
+                        sounds[type].play().catch(() => {});
                     }
                 } catch(e) {}
             },
 
-            // --- NAVIGATION ---
             goHome: function() {
-                if (this.state.isTimerRunning && !confirm("Đang trong trò chơi, bạn chắc chắn muốn thoát?")) return;
-                
+                if (this.state.isTimerRunning && !confirm("Đang chơi, bạn có chắc muốn thoát?")) return;
                 clearInterval(this.state.timer);
                 $('game-screen').classList.add('hidden');
                 $('start-screen').classList.remove('hidden');
             },
 
-            // --- GAME FLOW ---
-
+            // --- GAME PLAY ---
             startGame: function() {
-                if (this.data.length === 0) return alert("Cần thêm câu hỏi trước!");
+                if (this.data.length === 0) return alert("Chưa có câu hỏi nào!");
                 $('start-screen').classList.add('hidden');
                 $('game-screen').classList.remove('hidden');
                 $('game-screen').classList.add('flex');
@@ -570,7 +659,7 @@
 
             loadQuestion: function(index) {
                 if (index >= this.data.length) {
-                    alert("Đã hết câu hỏi! Sẽ quay lại câu đầu tiên.");
+                    alert("Đã hết câu hỏi! Quay lại câu 1.");
                     this.loadQuestion(0);
                     return;
                 }
@@ -583,52 +672,43 @@
 
                 const q = this.data[index];
 
-                // Update UI
-                $('question-count').innerText = index + 1;
+                $('question-count').innerText = (index + 1).toString().padStart(2, '0');
                 $('question-hint').innerText = q.hint;
                 
-                // Reset Blur
                 $('image-container-inner').classList.remove('blur-content');
                 $('hint-box').classList.remove('blur-content');
                 $('pause-overlay').classList.add('hidden');
+                $('timeout-overlay').classList.add('hidden'); // Reset timeout msg
 
-                // Image handling
                 const imgEl = $('question-image');
                 imgEl.style.opacity = '0';
                 imgEl.src = q.image;
                 
-                // Show Overlay, Hide Answer
                 $('image-overlay').classList.remove('hidden');
                 $('answer-overlay').classList.remove('translate-y-0');
                 $('answer-overlay').classList.add('translate-y-full');
                 
-                // Reset Buttons state
                 $('btn-start-timer').classList.remove('hidden');
                 $('btn-pause').classList.add('hidden');
                 $('btn-resume').classList.add('hidden');
                 $('btn-reveal').classList.add('hidden');
                 $('btn-next').classList.add('hidden');
 
-                // Reset Timer UI
                 this.updateTimerUI(this.state.timeLeft);
             },
 
             startTimer: function() {
-                // Hide overlay to show image
                 $('image-overlay').classList.add('hidden');
                 $('question-image').style.opacity = '1';
 
-                // Change buttons
                 $('btn-start-timer').classList.add('hidden');
-                $('btn-pause').classList.remove('hidden'); // Show Pause Button
+                $('btn-pause').classList.remove('hidden');
                 $('btn-reveal').classList.remove('hidden');
                 $('btn-next').classList.add('hidden'); 
 
-                // Start Logic
                 this.state.isTimerRunning = true;
                 this.state.timeLeft = this.settings.timePerQuestion;
                 this.updateTimerUI(this.state.timeLeft);
-
                 this.runInterval();
             },
 
@@ -641,37 +721,32 @@
                     this.state.timeLeft--;
                     this.updateTimerUI(this.state.timeLeft);
                     
-                    // Tick sound every second
+                    // Tick sound every second for better feedback
                     if (this.state.timeLeft > 0) {
-                        this.playSound('tick');
+                         this.playSound('tick');
                     }
 
                     if (this.state.timeLeft <= 0) {
                         clearInterval(this.state.timer);
                         this.state.isTimerRunning = false;
-                        this.playSound('wrong'); // Time out
+                        this.playSound('wrong');
+                        // Show Timeout Overlay
+                        $('timeout-overlay').classList.remove('hidden');
                     }
                 }, 1000);
             },
 
             togglePause: function() {
                 this.state.isPaused = !this.state.isPaused;
-
                 if (this.state.isPaused) {
-                    // PAUSE STATE
                     $('btn-pause').classList.add('hidden');
                     $('btn-resume').classList.remove('hidden');
-                    
-                    // Blur Content
                     $('image-container-inner').classList.add('blur-content');
                     $('hint-box').classList.add('blur-content');
                     $('pause-overlay').classList.remove('hidden');
                 } else {
-                    // RESUME STATE
                     $('btn-pause').classList.remove('hidden');
                     $('btn-resume').classList.add('hidden');
-                    
-                    // Unblur Content
                     $('image-container-inner').classList.remove('blur-content');
                     $('hint-box').classList.remove('blur-content');
                     $('pause-overlay').classList.add('hidden');
@@ -680,30 +755,30 @@
 
             updateTimerUI: function(time) {
                 const percent = (time / this.settings.timePerQuestion) * 100;
-                const bar = $('timer-bar');
-                const text = $('timer-text');
+                $('timer-bar').style.width = `${percent}%`;
+                $('timer-text').innerText = time;
                 
-                bar.style.width = `${percent}%`;
-                text.innerText = time;
-
-                // Color Logic
-                if (percent > 60) bar.className = "absolute bottom-0 left-0 h-1.5 bg-green-500 w-full transition-all duration-1000 ease-linear";
-                else if (percent > 30) bar.className = "absolute bottom-0 left-0 h-1.5 bg-yellow-500 w-full transition-all duration-1000 ease-linear";
-                else bar.className = "absolute bottom-0 left-0 h-1.5 bg-red-500 w-full transition-all duration-1000 ease-linear";
+                // Color change logic
+                const bar = $('timer-bar');
+                bar.className = `absolute top-0 left-0 h-full w-full transition-all duration-1000 ease-linear shadow-[0_0_10px_#F48C06]`;
+                if(percent > 50) bar.style.background = 'linear-gradient(90deg, #FFD700, #F48C06)';
+                else if(percent > 20) bar.style.background = 'linear-gradient(90deg, #F48C06, #DC2F02)';
+                else bar.style.background = '#D00000';
             },
 
             revealAnswer: function() {
                 if (this.state.timer) clearInterval(this.state.timer);
                 this.state.isTimerRunning = false;
                 this.state.isRevealed = true;
-
-                // Force Unblur if paused
                 if(this.state.isPaused) this.togglePause();
 
                 const ans = this.data[this.state.currentIndex].answer;
                 $('revealed-answer-text').innerText = ans;
                 $('answer-overlay').classList.remove('translate-y-full');
                 $('answer-overlay').classList.add('translate-y-0');
+                
+                // Hide other overlays
+                $('timeout-overlay').classList.add('hidden');
 
                 $('btn-pause').classList.add('hidden');
                 $('btn-resume').classList.add('hidden');
@@ -712,7 +787,6 @@
 
                 this.state.score += 10;
                 $('score-display').innerText = this.state.score;
-
                 this.playSound('correct');
                 this.createConfetti();
             },
@@ -721,14 +795,24 @@
                 this.loadQuestion(this.state.currentIndex + 1);
             },
 
-            // --- ADMIN & UTILS ---
+            // --- ADMIN ---
             toggleFullScreen: function() {
                 if (!document.fullscreenElement) document.documentElement.requestFullscreen();
                 else if (document.exitFullscreen) document.exitFullscreen();
             },
 
             toggleAdmin: function() {
-                $('admin-panel').classList.toggle('hidden');
+                const panel = $('admin-panel');
+                const content = $('admin-content');
+                
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before transition
+                    setTimeout(() => content.classList.remove('translate-x-full'), 10);
+                } else {
+                    content.classList.add('translate-x-full');
+                    setTimeout(() => panel.classList.add('hidden'), 300);
+                }
             },
 
             saveSettings: function() {
@@ -736,12 +820,10 @@
                 if (val > 0) {
                     this.settings.timePerQuestion = val;
                     this.saveData();
-                    alert("Đã lưu!");
+                    alert("Đã lưu cài đặt!");
                 }
             },
 
-            // --- EDIT / ADD LOGIC ---
-            
             cancelEdit: function() {
                 this.state.editingId = null;
                 $('new-answer').value = '';
@@ -749,11 +831,10 @@
                 $('new-image-upload').value = ''; 
                 $('new-hint').value = '';
                 
-                // Reset UI
                 $('form-title').innerText = "Thêm câu hỏi mới";
-                $('btn-save-question').innerHTML = '<i class="fas fa-plus"></i> Thêm vào danh sách';
-                $('btn-save-question').classList.remove('bg-orange-600', 'hover:bg-orange-700');
-                $('btn-save-question').classList.add('bg-green-600', 'hover:bg-green-700');
+                $('btn-save-question').innerHTML = '<i class="fas fa-plus-circle"></i> Thêm vào danh sách';
+                $('btn-save-question').classList.remove('from-orange-600', 'to-orange-500');
+                $('btn-save-question').classList.add('from-green-600', 'to-emerald-600');
                 $('btn-cancel-edit').classList.add('hidden');
             },
 
@@ -764,14 +845,13 @@
                 this.state.editingId = id;
                 $('new-answer').value = q.answer;
                 $('new-hint').value = q.hint;
-                $('new-image').value = q.image; // Show current image path
+                $('new-image').value = q.image;
                 $('new-image-upload').value = ''; 
 
-                // UI Changes
-                $('form-title').innerText = "Đang sửa câu hỏi: #" + id.toString().slice(-4);
-                $('btn-save-question').innerHTML = '<i class="fas fa-save"></i> Cập nhật câu hỏi';
-                $('btn-save-question').classList.remove('bg-green-600', 'hover:bg-green-700');
-                $('btn-save-question').classList.add('bg-orange-600', 'hover:bg-orange-700');
+                $('form-title').innerText = "Sửa câu hỏi";
+                $('btn-save-question').innerHTML = '<i class="fas fa-save"></i> Cập nhật';
+                $('btn-save-question').classList.remove('from-green-600', 'to-emerald-600');
+                $('btn-save-question').classList.add('from-orange-600', 'to-orange-500');
                 $('btn-cancel-edit').classList.remove('hidden');
 
                 $('admin-panel').querySelector('.overflow-y-auto').scrollTo({top: 0, behavior: 'smooth'});
@@ -783,23 +863,23 @@
                 const fileInput = $('new-image-upload');
                 const hint = $('new-hint').value;
 
-                if (!ans) return alert("Cần nhập đáp án!");
+                if (!ans) return alert("Chưa nhập đáp án!");
                 
                 let finalImage = null;
 
+                // Priority: File Upload > URL Input
                 if (fileInput.files && fileInput.files[0]) {
+                    const btn = $('btn-save-question');
+                    const oldText = btn.innerHTML;
+                    btn.innerHTML = 'Đang xử lý...';
                     try {
-                        const btn = $('btn-save-question');
-                        const originalText = btn.innerHTML;
-                        btn.innerText = "Đang xử lý ảnh...";
-                        btn.disabled = true;
                         finalImage = await processImage(fileInput.files[0]);
-                        btn.innerHTML = originalText;
-                        btn.disabled = false;
                     } catch (e) {
-                        alert("Lỗi khi xử lý file ảnh: " + e.message);
+                        alert("Lỗi ảnh!");
+                        btn.innerHTML = oldText;
                         return;
                     }
+                    btn.innerHTML = oldText;
                 } else if (urlInput.value.trim() !== "") {
                     finalImage = urlInput.value.trim();
                 }
@@ -811,7 +891,7 @@
                         this.data[index].hint = hint || "...";
                         if (finalImage) this.data[index].image = finalImage;
                     }
-                    alert("Đã cập nhật câu hỏi!");
+                    alert("Đã cập nhật!");
                 } else {
                     if (!finalImage) finalImage = getPlaceholder(ans);
                     this.data.push({
@@ -820,7 +900,7 @@
                         image: finalImage,
                         hint: hint || "..."
                     });
-                    alert("Đã thêm câu hỏi mới!");
+                    alert("Đã thêm mới!");
                 }
                 
                 this.saveData();
@@ -840,21 +920,20 @@
                 tbody.innerHTML = '';
                 this.data.forEach(q => {
                     const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50 transition group";
-                    const imgTag = `<img src="${q.image}" class="w-10 h-10 object-cover rounded border border-slate-200">`;
+                    tr.className = "hover:bg-slate-50 transition border-b border-slate-100 last:border-0";
+                    const imgTag = `<img src="${q.image}" class="w-10 h-10 object-cover rounded border border-slate-300">`;
                     
-                    const isEditing = this.state.editingId === q.id;
-                    if(isEditing) tr.classList.add('bg-blue-50', 'border-l-4', 'border-blue-500');
+                    if(this.state.editingId === q.id) tr.classList.add('bg-orange-50');
 
                     tr.innerHTML = `
                         <td class="p-3">${imgTag}</td>
                         <td class="p-3 font-bold text-slate-700">
                             ${q.answer}
-                            <div class="text-[10px] text-slate-400 font-normal truncate max-w-[150px]">${q.hint}</div>
+                            <div class="text-[10px] text-slate-400 font-normal truncate max-w-[120px]">${q.hint}</div>
                         </td>
                         <td class="p-3 text-right whitespace-nowrap">
-                            <button onclick="app.editQuestion(${q.id})" class="text-blue-600 hover:text-blue-800 p-2 mr-1 rounded hover:bg-blue-100 transition" title="Sửa"><i class="fas fa-pencil-alt"></i></button>
-                            <button onclick="app.deleteQuestion(${q.id})" class="text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100 transition" title="Xóa"><i class="fas fa-trash"></i></button>
+                            <button onclick="app.editQuestion(${q.id})" class="text-blue-500 hover:text-blue-700 p-2"><i class="fas fa-edit"></i></button>
+                            <button onclick="app.deleteQuestion(${q.id})" class="text-red-500 hover:text-red-700 p-2"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     `;
                     tbody.appendChild(tr);
@@ -862,17 +941,27 @@
             },
 
             createConfetti: function() {
-                for (let i = 0; i < 50; i++) {
+                const colors = ['#FFD700', '#F48C06', '#D90429', '#FFFFFF'];
+                for (let i = 0; i < 100; i++) {
                     const c = document.createElement('div');
                     c.className = 'confetti';
                     c.style.left = Math.random() * 100 + 'vw';
-                    c.style.backgroundColor = ['#FFD700', '#FF4500', '#00FF00', '#1E90FF'][Math.floor(Math.random() * 4)];
-                    c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    c.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    c.style.opacity = Math.random();
                     document.body.appendChild(c);
-                    setTimeout(() => c.remove(), 4000);
+                    setTimeout(() => c.remove(), 5000);
                 }
             }
         };
+
+        // --- INIT ---
+        // Bind file input change for new image
+        $('new-image-upload').addEventListener('change', function() {
+            if(this.files && this.files[0]) {
+                $('new-image').value = "Đã chọn file: " + this.files[0].name;
+            }
+        });
 
         window.onload = () => app.init();
     </script>
