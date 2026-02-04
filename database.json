@@ -1,45 +1,45 @@
 [
   {
     "id": 1,
-    "answer": "CA CAO",
-    "image": "images/cacao.png",
-    "hint": "Một loại đồ uống hoặc nguyên liệu làm sô-cô-la."
+    "answer": "HÀO HỨNG",
+    "image": "images/haohung.png",
+    "hint": "Trạng thái tinh thần phấn khởi, thích thú."
   },
   {
     "id": 2,
-    "answer": "CỔ ĐÔNG",
-    "image": "images/codong.png",
-    "hint": "Người sở hữu cổ phần trong một công ty."
+    "answer": "VẬN TẢI",
+    "image": "images/vantai.png",
+    "hint": "Một trong những lĩnh vực hoạt động chính của công ty."
   },
   {
     "id": 3,
-    "answer": "CƠ QUAN",
-    "image": "images/coquan.png",
-    "hint": "Nơi làm việc hành chính nhà nước hoặc tổ chức."
+    "answer": "ĐOÀN KẾT",
+    "image": "images/doanket.png",
+    "hint": "Sự gắn bó, hợp tác chặt chẽ giữa các thành viên trong một nhóm."
   },
   {
     "id": 4,
-    "answer": "ĐẦU KÉO",
-    "image": "images/daukeo.png",
-    "hint": "Phần đầu của xe container dùng để kéo rơ-moóc."
+    "answer": "PHÚ ANH",
+    "image": "images/phuanh.png",
+    "hint": "Tên thương hiệu công ty chúng ta."
   },
   {
     "id": 5,
+    "answer": "MỤC TIÊU",
+    "image": "images/muctieu.png",
+    "hint": "Điều mà một người hoặc tổ chức hướng đến."
+  },
+  {
+    "id": 6,
     "answer": "ĐỒNG LÒNG",
     "image": "images/donglong.png",
     "hint": "Cùng chung ý chí, suy nghĩ và hành động."
   },
   {
-    "id": 6,
-    "answer": "HÀNG NGŨ",
-    "image": "images/hangngu.png",
-    "hint": "Tập hợp người được sắp xếp theo trật tự."
-  },
-  {
     "id": 7,
-    "answer": "HÀO HỨNG",
-    "image": "images/haohung.png",
-    "hint": "Trạng thái tinh thần phấn khởi, thích thú."
+    "answer": "XU HƯỚNG",
+    "image": "images/xuhuong.png",
+    "hint": "Sự vận động, phát triển theo một chiều hướng nào đó."
   },
   {
     "id": 8,
@@ -49,68 +49,74 @@
   },
   {
     "id": 9,
-    "answer": "NHÃN TIỀN",
-    "image": "images/nhantien.png",
-    "hint": "Rõ ràng ngay trước mắt, thường nói về hậu quả/kết quả."
-  },
-  {
-    "id": 10,
-    "answer": "NHIỆT HUYẾT",
-    "image": "images/nhiethuyet.png",
-    "hint": "Tình cảm sôi nổi, hăng say hết mình vì công việc."
-  },
-  {
-    "id": 11,
-    "answer": "PHÚ ANH",
-    "image": "images/phuanh.png",
-    "hint": "Tên thương hiệu công ty chúng ta."
-  },
-  {
-    "id": 12,
-    "answer": "TÌNH CỜ",
-    "image": "images/tinhco.png",
-    "hint": "Gặp gỡ hoặc xảy ra ngẫu nhiên, không hẹn trước."
-  },
-  {
-    "id": 13,
-    "answer": "TRANH THỦ",
-    "image": "images/tranhthu.png",
-    "hint": "Tận dụng thời gian rảnh để làm việc gì đó."
-  },
-  {
-    "id": 14,
-    "answer": "TƯƠNG LAI",
-    "image": "images/tuonglai.png",
-    "hint": "Khoảng thời gian chưa xảy ra, sắp tới."
-  },
-  {
-    "id": 15,
-    "answer": "VẬN TẢI",
-    "image": "images/vantai.png",
-    "hint": "Một trong những lĩnh vực hoạt động chính của công ty."
-  },
-  {
-    "id": 16,
     "answer": "VŨ THÀNH",
     "image": "images/vuthanh.png",
     "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Sơn Cảng)."
   },
   {
-    "id": 17,
-    "answer": "XU HƯỚNG",
-    "image": "images/xuhuong.png",
-    "hint": "Sự vận động, phát triển theo một chiều hướng nào đó."
+    "id": 10,
+    "answer": "TRANH THỦ",
+    "image": "images/tranhthu.png",
+    "hint": "Tận dụng thời gian rảnh để làm việc gì đó."
   },
   {
-    "id": 18,
+    "id": 11,
+    "answer": "CỔ ĐÔNG",
+    "image": "images/codong.png",
+    "hint": "Người sở hữu cổ phần trong một công ty."
+  },
+  {
+    "id": 12,
     "answer": "YÊN BÌNH",
     "image": "images/yenbinh.png",
     "hint": "Trạng thái không có chiến tranh, xung đột, êm ả."
   },
   {
+    "id": 13,
+    "answer": "HÀNG NGŨ",
+    "image": "images/hangngu.png",
+    "hint": "Tập hợp người được sắp xếp theo trật tự."
+  },
+  {
+    "id": 14,
+    "answer": "NHIỆT HUYẾT",
+    "image": "images/nhiethuyet.png",
+    "hint": "Tình cảm sôi nổi, hăng say hết mình vì công việc."
+  },
+  {
+    "id": 15,
+    "answer": "LÀM VIỆC",
+    "image": "images/lamviec.png",
+    "hint": "Thực hiện một nhiệm vụ hoặc công việc cụ thể."
+  },
+  {
+    "id": 16,
+    "answer": "TƯƠNG LAI",
+    "image": "images/tuonglai.png",
+    "hint": "Khoảng thời gian chưa xảy ra, sắp tới."
+  },
+  {
+    "id": 17,
+    "answer": "CƠ QUAN",
+    "image": "images/coquan.png",
+    "hint": "Nơi làm việc hành chính nhà nước hoặc tổ chức."
+  },
+  {
+    "id": 18,
+    "answer": "ĐẦU KÉO",
+    "image": "images/daukeo.png",
+    "hint": "Phần đầu của xe container dùng để kéo rơ-moóc."
+  },
+  {
     "id": 19,
-    "answer": "YÊU CẦU",
-    "image": "images/yeucau.png",
-    "hint": "Đòi hỏi hoặc đề nghị người khác làm gì đó."
+    "answer": "THÀNH CÔNG",
+    "image": "images/thanhcong.png",
+    "hint": "Kết quả đạt được sau khi cố gắng và nỗ lực."
+  },
+  {
+    "id": 20,
+    "answer": "SÁNG KIẾN",
+    "image": "images/sangkien.png",
+    "hint": "Ý tưởng mới, sáng tạo giúp cải tiến hoặc phát triển."
   }
 ]

@@ -257,12 +257,15 @@
                     
                     <!-- Timeout Overlay (Hết giờ) -->
                     <div id="timeout-overlay" class="hidden absolute inset-0 bg-black/80 backdrop-blur-md z-30 flex items-center justify-center animate-shake">
-                        <div class="bg-red-600 border-4 border-white px-16 py-10 rounded-3xl shadow-[0_0_100px_rgba(255,0,0,0.8)] text-center relative overflow-hidden">
+                        <div class="bg-red-600 border-4 border-white px-16 py-10 rounded-3xl shadow-[0_0_100px_rgba(255,0,0,0.8)] text-center relative overflow-hidden flex flex-col items-center">
                              <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-                            <div class="text-white text-8xl font-black uppercase tracking-widest drop-shadow-xl relative z-10 font-sans">
+                            <div class="text-white text-8xl font-black uppercase tracking-widest drop-shadow-xl relative z-10 font-sans mb-8">
                                 <i class="fas fa-clock mb-4 block text-6xl"></i>
                                 HẾT GIỜ!
                             </div>
+                            <button onclick="app.closeTimeout()" class="relative z-10 bg-yellow-400 hover:bg-yellow-300 text-red-900 text-xl font-bold uppercase py-3 px-10 rounded-full shadow-xl transition transform hover:scale-105 active:scale-95 border-2 border-white">
+                                <i class="fas fa-times mr-2"></i> Đóng thông báo
+                            </button>
                         </div>
                     </div>
 
@@ -278,60 +281,79 @@
 
                 <!-- Sidebar Controls - Thu nhỏ kích thước -->
                 <div class="w-64 flex-none flex flex-col gap-4 z-40">
-                    
-                    <!-- Hint Card -->
-                    <div id="hint-box" class="bg-gradient-to-br from-red-800 to-red-900 border border-yellow-500/30 rounded-xl p-5 shadow-xl relative overflow-hidden group transition-all duration-300">
-                        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                        <div class="flex items-center gap-2 mb-2 relative z-10">
+
+                <!-- Hint Card -->
+                <div id="hint-box" class="bg-gradient-to-br from-red-800 to-red-900 border border-yellow-500/30 rounded-xl p-4 shadow-xl relative overflow-hidden">
+                    <div class="flex justify-between items-center mb-2 border-b border-yellow-500/20 pb-2">
+                        <div class="flex items-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs">
                                 <i class="fas fa-lightbulb"></i>
                             </div>
                             <span class="text-[10px] uppercase font-bold text-yellow-500 tracking-widest">Gợi ý MC</span>
                         </div>
-                        <p id="question-hint" class="text-lg font-bold text-white leading-relaxed font-serif relative z-10">
-                            ...
-                        </p>
+                        <button onclick="app.toggleHint()" class="text-yellow-500 hover:text-white w-6 h-6 rounded flex items-center justify-center transition">
+                            <i class="fas fa-eye text-xs"></i>
+                        </button>
                     </div>
 
-                    <!-- NEW TIMER POSITION -->
-                    <div class="bg-black/20 border border-yellow-500/50 rounded-xl p-4 text-center relative overflow-hidden group shadow-lg">
-                        <span class="text-[10px] uppercase font-bold text-yellow-500 tracking-widest mb-1 block">Thời gian</span>
-                        <div id="timer-text" class="text-6xl font-mono font-black text-white tabular-nums leading-none tracking-tighter drop-shadow-md">30</div>
-                        
-                        <!-- Progress Bar at bottom -->
-                        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-white/10">
-                             <div id="timer-bar" class="absolute top-0 left-0 h-full w-full bg-yellow-500 shadow-[0_0_10px_#F48C06] transition-all duration-1000 ease-linear"></div>
-                        </div>
+                    <div id="hint-content" class="hidden">
+                        <p id="question-hint" class="text-sm font-bold text-white leading-relaxed">...</p>
                     </div>
-
-                    <!-- Controller Pad -->
-                    <div class="flex-grow bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-3 flex flex-col gap-3 shadow-lg">
-                        <div class="text-center text-[9px] uppercase tracking-widest text-yellow-500/50 mb-1">Điều khiển</div>
-                        
-                        <div class="flex flex-col gap-2 flex-grow justify-end">
-                            <button id="btn-start-timer" onclick="app.startTimer()" class="w-full py-4 bg-green-700 hover:bg-green-600 text-white font-bold rounded-lg shadow-lg border-b-4 border-green-900 transition active:border-b-0 active:translate-y-1 text-sm">
-                                <i class="fas fa-hourglass-start mr-2"></i> BẮT ĐẦU
-                            </button>
-                            
-                            <div class="grid grid-cols-2 gap-2">
-                                <!-- Nút nhỏ hơn: py-3 text-xs -->
-                                <button id="btn-pause" onclick="app.togglePause()" class="hidden py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg shadow border-b-4 border-yellow-800 transition active:border-b-0 active:translate-y-1 text-xs">
-                                    <i class="fas fa-pause mr-1"></i> TẠM DỪNG
-                                </button>
-                                <button id="btn-resume" onclick="app.togglePause()" class="hidden py-3 bg-green-700 hover:bg-green-600 text-white font-bold rounded-lg shadow border-b-4 border-green-900 transition active:border-b-0 active:translate-y-1 col-span-2 text-xs">
-                                    <i class="fas fa-play mr-1"></i> TIẾP TỤC
-                                </button>
-                                <button id="btn-reveal" onclick="app.revealAnswer()" class="hidden py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-lg shadow border-b-4 border-orange-800 transition active:border-b-0 active:translate-y-1 col-span-2 text-xs">
-                                    HIỆN ĐÁP ÁN
-                                </button>
-                            </div>
-
-                            <button id="btn-next" onclick="app.nextQuestion()" class="hidden w-full py-4 bg-blue-700 hover:bg-blue-600 text-white font-bold rounded-lg shadow-lg border-b-4 border-blue-900 transition active:border-b-0 active:translate-y-1 text-sm">
-                                CÂU TIẾP THEO <i class="fas fa-arrow-right ml-1"></i>
-                            </button>
-                        </div>
+                    <div id="hint-placeholder" class="text-center py-2">
+                        <span class="text-[10px] text-white/30 italic">(Nội dung đang ẩn)</span>
                     </div>
                 </div>
+
+                <!-- BIG TIMER -->
+                <div class="bg-black/40 border-[3px] border-yellow-400 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
+                    <span class="text-[12px] uppercase font-extrabold text-yellow-400 tracking-widest mb-2 block">
+                        ⏱ THỜI GIAN
+                    </span>
+
+                    <div id="timer-text"
+                        class="text-[110px] leading-none font-black font-mono text-white tracking-tight drop-shadow-[0_0_25px_rgba(255,200,0,0.9)]">
+                        30
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="absolute bottom-0 left-0 w-full h-3 bg-white/10">
+                        <div id="timer-bar"
+                            class="absolute top-0 left-0 h-full w-full bg-yellow-400 shadow-[0_0_20px_#FACC15] transition-all duration-1000 ease-linear"></div>
+                    </div>
+                </div>
+
+
+                <!-- SMALL CONTROL PAD -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-2 flex flex-col gap-2 shadow-md">
+                    <div class="text-center text-[9px] uppercase tracking-widest text-yellow-500/40">Điều khiển</div>
+
+                    <button id="btn-start-timer" onclick="app.startTimer()" 
+                        class="w-full py-2 bg-green-700 hover:bg-green-600 text-white font-bold rounded-md shadow border-b-2 border-green-900 transition active:border-b-0 active:translate-y-0.5 text-xs">
+                        ▶ BẮT ĐẦU
+                    </button>
+
+                    <div class="grid grid-cols-2 gap-1">
+                        <button id="btn-pause" onclick="app.togglePause()" 
+                            class="hidden py-2 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-md shadow border-b-2 border-yellow-800 transition active:border-b-0 active:translate-y-0.5 text-[10px]">
+                            ⏸ DỪNG
+                        </button>
+                        <button id="btn-resume" onclick="app.togglePause()" 
+                            class="hidden py-2 bg-green-700 hover:bg-green-600 text-white font-bold rounded-md shadow border-b-2 border-green-900 transition active:border-b-0 active:translate-y-0.5 col-span-2 text-[10px]">
+                            ▶ TIẾP
+                        </button>
+                        <button id="btn-reveal" onclick="app.revealAnswer()" 
+                            class="hidden py-2 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-md shadow border-b-2 border-orange-800 transition active:border-b-0 active:translate-y-0.5 col-span-2 text-[10px]">
+                            ĐÁP ÁN
+                        </button>
+                    </div>
+
+                    <button id="btn-next" onclick="app.nextQuestion()" 
+                        class="hidden w-full py-2 bg-blue-700 hover:bg-blue-600 text-white font-bold rounded-md shadow border-b-2 border-blue-900 transition active:border-b-0 active:translate-y-0.5 text-xs">
+                        TIẾP →
+                    </button>
+                </div>
+            </div>
+
             </div>
         </div>
 
@@ -448,8 +470,8 @@
         // --- SOUNDS (Sử dụng link online ổn định hoặc file local nếu có) ---
         const sounds = {
             correct: new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3'), // Tiếng chuông reo
-            wrong: new Audio('https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3'),   // Tiếng buzz
-            tick: new Audio('https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3'),    // Tiếng đồng hồ
+            wrong: new Audio('time0out.mp3'),   // Tiếng buzz
+            tick: new Audio('ticking.mp3'),    // Tiếng đồng hồ
             win: new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3')     // Nhạc chiến thắng
         };
         // Preload
@@ -676,7 +698,12 @@
                 $('question-hint').innerText = q.hint;
                 
                 $('image-container-inner').classList.remove('blur-content');
+                
+                // --- Reset Hint State ---
+                $('hint-content').classList.add('hidden');
+                $('hint-placeholder').classList.remove('hidden');
                 $('hint-box').classList.remove('blur-content');
+                
                 $('pause-overlay').classList.add('hidden');
                 $('timeout-overlay').classList.add('hidden'); // Reset timeout msg
 
@@ -695,6 +722,23 @@
                 $('btn-next').classList.add('hidden');
 
                 this.updateTimerUI(this.state.timeLeft);
+            },
+
+            toggleHint: function() {
+                const content = $('hint-content');
+                const placeholder = $('hint-placeholder');
+                
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                } else {
+                    content.classList.add('hidden');
+                    placeholder.classList.remove('hidden');
+                }
+            },
+
+            closeTimeout: function() {
+                $('timeout-overlay').classList.add('hidden');
             },
 
             startTimer: function() {
@@ -742,13 +786,12 @@
                     $('btn-pause').classList.add('hidden');
                     $('btn-resume').classList.remove('hidden');
                     $('image-container-inner').classList.add('blur-content');
-                    $('hint-box').classList.add('blur-content');
+                    // Không blur hint box nữa vì có thể cần đọc
                     $('pause-overlay').classList.remove('hidden');
                 } else {
                     $('btn-pause').classList.remove('hidden');
                     $('btn-resume').classList.add('hidden');
                     $('image-container-inner').classList.remove('blur-content');
-                    $('hint-box').classList.remove('blur-content');
                     $('pause-overlay').classList.add('hidden');
                 }
             },
