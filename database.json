@@ -36,6 +36,12 @@
     "hint": "Cùng chung ý chí, suy nghĩ và hành động."
   },
   {
+    "id": 21,
+    "answer": "SƠN CẢNG",
+    "image": "images/songcang.png",
+    "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Vũ Thành)."
+  },
+  {
     "id": 7,
     "answer": "XU HƯỚNG",
     "image": "images/xuhuong.png",
@@ -67,9 +73,9 @@
   },
   {
     "id": 12,
-    "answer": "YÊN BÌNH",
-    "image": "images/yenbinh.png",
-    "hint": "Trạng thái không có chiến tranh, xung đột, êm ả."
+    "answer": "SƠN CẢNG",
+    "image": "images/songcang.png",
+    "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Vũ Thành)."
   },
   {
     "id": 13,
@@ -118,5 +124,6 @@
     "answer": "SÁNG KIẾN",
     "image": "images/sangkien.png",
     "hint": "Ý tưởng mới, sáng tạo giúp cải tiến hoặc phát triển."
-  }
+  },
 ]
+  
