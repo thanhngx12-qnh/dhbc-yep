@@ -1,15 +1,15 @@
 [
   {
     "id": 1,
-    "answer": "HÀO HỨNG",
-    "image": "images/haohung.png",
-    "hint": "Trạng thái tinh thần phấn khởi, thích thú."
+    "answer": "HÀNG NGŨ",
+    "image": "images/hangngu.png",
+    "hint": "Tập hợp người được sắp xếp theo trật tự."
   },
   {
     "id": 2,
-    "answer": "VẬN TẢI",
-    "image": "images/vantai.png",
-    "hint": "Một trong những lĩnh vực hoạt động chính của công ty."
+    "answer": "NHIỆT HUYẾT",
+    "image": "images/nhiethuyet.png",
+    "hint": "Tình cảm sôi nổi, hăng say hết mình vì công việc."
   },
   {
     "id": 3,
@@ -19,75 +19,69 @@
   },
   {
     "id": 4,
+    "answer": "VẬN TẢI",
+    "image": "images/vantai.png",
+    "hint": "Một trong những lĩnh vực hoạt động chính của công ty."
+  },
+  {
+    "id": 5,
     "answer": "PHÚ ANH",
     "image": "images/phuanh.png",
     "hint": "Tên thương hiệu công ty chúng ta."
   },
   {
-    "id": 5,
+    "id": 6,
     "answer": "MỤC TIÊU",
     "image": "images/muctieu.png",
     "hint": "Điều mà một người hoặc tổ chức hướng đến."
   },
   {
-    "id": 6,
+    "id": 7,
     "answer": "ĐỒNG LÒNG",
     "image": "images/donglong.png",
     "hint": "Cùng chung ý chí, suy nghĩ và hành động."
   },
   {
-    "id": 21,
+    "id": 8,
     "answer": "SƠN CẢNG",
     "image": "images/songcang.png",
     "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Vũ Thành)."
   },
   {
-    "id": 7,
+    "id": 9,
+    "answer": "TƯƠNG LAI",
+    "image": "images/tuonglai.png",
+    "hint": "Khoảng thời gian chưa xảy ra, sắp tới."
+  },
+  {
+    "id": 10,
+    "answer": "THÀNH CÔNG",
+    "image": "images/thanhcong.png",
+    "hint": "Kết quả đạt được sau khi cố gắng và nỗ lực."
+  },
+  {
+    "id": 11,
     "answer": "XU HƯỚNG",
     "image": "images/xuhuong.png",
     "hint": "Sự vận động, phát triển theo một chiều hướng nào đó."
   },
   {
-    "id": 8,
+    "id": 12,
     "answer": "KIẾM TIỀN",
     "image": "images/kiemtien.png",
     "hint": "Hành động làm việc để tạo ra thu nhập."
   },
   {
-    "id": 9,
+    "id": 13,
     "answer": "VŨ THÀNH",
     "image": "images/vuthanh.png",
     "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Sơn Cảng)."
   },
   {
-    "id": 10,
-    "answer": "TRANH THỦ",
-    "image": "images/tranhthu.png",
-    "hint": "Tận dụng thời gian rảnh để làm việc gì đó."
-  },
-  {
-    "id": 11,
+    "id": 14,
     "answer": "CỔ ĐÔNG",
     "image": "images/codong.png",
     "hint": "Người sở hữu cổ phần trong một công ty."
-  },
-  {
-    "id": 12,
-    "answer": "SƠN CẢNG",
-    "image": "images/songcang.png",
-    "hint": "Tên một trong 3 bãi chính của công ty (cùng với Phú Anh, Vũ Thành)."
-  },
-  {
-    "id": 13,
-    "answer": "HÀNG NGŨ",
-    "image": "images/hangngu.png",
-    "hint": "Tập hợp người được sắp xếp theo trật tự."
-  },
-  {
-    "id": 14,
-    "answer": "NHIỆT HUYẾT",
-    "image": "images/nhiethuyet.png",
-    "hint": "Tình cảm sôi nổi, hăng say hết mình vì công việc."
   },
   {
     "id": 15,
@@ -97,33 +91,26 @@
   },
   {
     "id": 16,
-    "answer": "TƯƠNG LAI",
-    "image": "images/tuonglai.png",
-    "hint": "Khoảng thời gian chưa xảy ra, sắp tới."
-  },
-  {
-    "id": 17,
     "answer": "CƠ QUAN",
     "image": "images/coquan.png",
     "hint": "Nơi làm việc hành chính nhà nước hoặc tổ chức."
   },
   {
-    "id": 18,
+    "id": 17,
     "answer": "ĐẦU KÉO",
     "image": "images/daukeo.png",
     "hint": "Phần đầu của xe container dùng để kéo rơ-moóc."
   },
   {
-    "id": 19,
-    "answer": "THÀNH CÔNG",
-    "image": "images/thanhcong.png",
-    "hint": "Kết quả đạt được sau khi cố gắng và nỗ lực."
-  },
-  {
-    "id": 20,
+    "id": 18,
     "answer": "SÁNG KIẾN",
     "image": "images/sangkien.png",
     "hint": "Ý tưởng mới, sáng tạo giúp cải tiến hoặc phát triển."
+  },
+  {
+    "id": 19,
+    "answer": "HÀO HỨNG",
+    "image": "images/haohung.png",
+    "hint": "Trạng thái tinh thần phấn khởi, thích thú."
   }
 ]
-  
